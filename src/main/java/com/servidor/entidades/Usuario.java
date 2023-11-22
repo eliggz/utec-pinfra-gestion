@@ -50,15 +50,10 @@ public class Usuario implements Serializable {
 
 	private String telefono;
 
-	//bi-directional many-to-one association to Ciudad
-	@ManyToOne
-	@JoinColumn(name="ID_CIUDAD")
-	private Ciudad ciudad;
+	
+	private String ciudad;
 
-	//bi-directional many-to-one association to Departamento
-	@ManyToOne
-	@JoinColumn(name="ID_DEPTO")
-	private Departamento departamento;
+	private String departamento;
 
 	//bi-directional many-to-one association to Estado
 	@ManyToOne
@@ -92,7 +87,7 @@ public class Usuario implements Serializable {
 
 	public Usuario(String apellido1, String apellido2, String documento, Date fechaNacimiento, String mailInstitucional,
 			String mailPersonal, String nombreUsuario, String nombre1, String nombre2, String password, String telefono,
-			Ciudad ciudad, Departamento departamento, Estado estado, Itr itr, Rol rol) {
+			String ciudad, String departamento, Estado estado, Itr itr, Rol rol) {
 		super();
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
@@ -210,19 +205,19 @@ public class Usuario implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public Ciudad getCiudad() {
+	public String getCiudad() {
 		return this.ciudad;
 	}
 
-	public void setCiudad(Ciudad ciudad) {
+	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
 
-	public Departamento getDepartamento() {
+	public String getDepartamento() {
 		return this.departamento;
 	}
 
-	public void setDepartamento(Departamento departamento) {
+	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
 

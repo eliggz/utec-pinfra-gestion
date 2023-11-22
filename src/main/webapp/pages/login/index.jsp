@@ -21,7 +21,7 @@
 	</header>
 
 	<main>
-		<h2>Bienvenido a mi Login</h2>
+		<h2>Login</h2>
 
 		<%
 		if (request.getSession().getAttribute("errorMensaje") != null) {

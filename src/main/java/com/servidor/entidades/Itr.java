@@ -23,10 +23,7 @@ public class Itr implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Departamento
-	@ManyToOne
-	@JoinColumn(name="ID_DEPTO")
-	private Departamento departamento;
+	private String departamento;
 
 	//bi-directional many-to-one association to Estado
 	@ManyToOne
@@ -56,11 +53,11 @@ public class Itr implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Departamento getDepartamento() {
+	public String getDepartamento() {
 		return this.departamento;
 	}
 
-	public void setDepartamento(Departamento departamento) {
+	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
 

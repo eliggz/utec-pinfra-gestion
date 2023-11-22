@@ -6,13 +6,9 @@
     <persistence-unit name="Proyecto-PInfra">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:/PinfraDS</jta-data-source>
-        <class>com.servidor.entidades.Ciudad</class>
-        <class>com.servidor.entidades.Departamento</class>
         <class>com.servidor.entidades.Estado</class>
-        <class>com.servidor.entidades.Funcionalidad</class>
         <class>com.servidor.entidades.Itr</class>
         <class>com.servidor.entidades.Rol</class>
-        <class>com.servidor.entidades.RolFuncion</class>
         <class>com.servidor.entidades.Usuario</class>
         <class>com.servidor.entidades.UsuarioAnalista</class>
         <class>com.servidor.entidades.UsuarioEstudiante</class>
@@ -21,7 +17,7 @@
         <properties>
             <property name="hibernate.dialect"
                 value="org.hibernate.dialect.Oracle10gDialect" />
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             <property name="hibernate.show_sql" value="true" />
             <property
                 name="javax.persistence.schema-generation.create-database-schemas"

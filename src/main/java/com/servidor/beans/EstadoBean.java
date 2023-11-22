@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import com.servidor.entidades.Estado;
+import com.servidor.entidades.Usuario;
 import com.servidor.execption.ServiciosException;
 
 
@@ -26,8 +27,7 @@ public class EstadoBean implements EstadoBeanRemote {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
-	public Estado buscarEstado(Long id) throws ServiciosException {
+    public Estado buscarEstado(Long id) throws ServiciosException {
 		try {
 			Estado estado = em.find(Estado.class, id);
 		return estado;
@@ -36,5 +36,5 @@ public class EstadoBean implements EstadoBeanRemote {
 		}
 
 	}
-
+    
 }

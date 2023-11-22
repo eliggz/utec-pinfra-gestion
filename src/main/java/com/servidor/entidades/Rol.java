@@ -25,9 +25,6 @@ public class Rol implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to RolFuncion
-	@OneToMany(mappedBy="rol")
-	private List<RolFuncion> rolFuncions;
 
 	//bi-directional many-to-one association to Usuario
 	@OneToMany(mappedBy="rol")
@@ -64,27 +61,6 @@ public class Rol implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<RolFuncion> getRolFuncions() {
-		return this.rolFuncions;
-	}
-
-	public void setRolFuncions(List<RolFuncion> rolFuncions) {
-		this.rolFuncions = rolFuncions;
-	}
-
-	public RolFuncion addRolFuncion(RolFuncion rolFuncion) {
-		getRolFuncions().add(rolFuncion);
-		rolFuncion.setRol(this);
-
-		return rolFuncion;
-	}
-
-	public RolFuncion removeRolFuncion(RolFuncion rolFuncion) {
-		getRolFuncions().remove(rolFuncion);
-		rolFuncion.setRol(null);
-
-		return rolFuncion;
-	}
 
 	public List<Usuario> getUsuarios() {
 		return this.usuarios;
