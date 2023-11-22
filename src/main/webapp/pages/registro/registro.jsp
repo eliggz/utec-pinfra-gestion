@@ -28,11 +28,19 @@
 
 			<table>
 				<tr>
-					<td>Apellido 1</td>
+					<td>Primer Nombre</td>
+					<td><input type="text" name="nombre1" /></td>
+				</tr>
+				<tr>
+					<td>Segundo Nombre</td>
+					<td><input type="text" name="nombre2" /></td>
+				</tr>
+				<tr>
+					<td>Primer Apellido</td>
 					<td><input type="text" name="apellido1" /></td>
 				</tr>
 				<tr>
-					<td>Apellido 2</td>
+					<td>Segundo Apellido</td>
 					<td><input type="text" name="apellido2" /></td>
 				</tr>
 				<tr>
@@ -55,14 +63,7 @@
 					<td>Nombre de usuario</td>
 					<td><input type="text" name="nombreUsuario" /></td>
 				</tr>
-				<tr>
-					<td>Nombre 1</td>
-					<td><input type="text" name="nombre1" /></td>
-				</tr>
-				<tr>
-					<td>Nombre 2</td>
-					<td><input type="text" name="nombre2" /></td>
-				</tr>
+
 				<tr>
 					<td>Contraseña</td>
 					<td><input type="password" name="password" /></td>
@@ -72,15 +73,9 @@
 					<td><input type="text" name="telefono" /></td>
 				</tr>
 				<tr>
-					<td>Ciudad</td>
-					<td><select name="ciudad" id="ciudadSelect">
-							
-
-					</select></td>
-				</tr>
-				<tr>
 					<td>Departamento</td>
 					<td><select name="departamento" id="departamentoSelect">
+					<option value="" selected disabled>Seleccione Departamento</option>
 							<option value="Artigas">Artigas</option>
 							<option value="Canelones">Canelones</option>
 							<option value="Cerro Largo">Cerro Largo</option>
@@ -103,6 +98,15 @@
 					</select></td>
 
 				</tr>
+<tr>
+    <td>Ciudad</td>
+    <td>
+        <select name="ciudad" id="ciudadSelect">
+            <option value="" selected disabled>Seleccione Ciudad</option>
+        </select>
+    </td>
+</tr>
+				
 				<!-- <tr>
       <td>Estado</td>
       <td>
