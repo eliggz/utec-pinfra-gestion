@@ -52,10 +52,11 @@ public static Itr buscarItr(Long itr) {
 }
 
 public static Itr encontrarItrPorNombre(String nombre) {
+	
 	try {
 		var itrBean = getService();
-	Long idItr = itrBean.obtenerIdPorNombre(nombre);
-	Itr itr = itrBean.buscarItr(idItr);
+		Itr itr = itrBean.buscarItr(itrBean.obtenerIdPorNombre(nombre.toUpperCase()));
+
 	return itr;
 	
 	} catch (Exception e) {

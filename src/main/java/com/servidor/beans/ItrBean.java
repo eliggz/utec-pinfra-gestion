@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
@@ -60,17 +61,20 @@ public class ItrBean implements ItrBeanRemote {
         }
     }
 	@Override
-    public Long obtenerIdPorNombre(String nombreItr) {
-		
-		
-        TypedQuery<Long> query = em.createQuery(
-            "SELECT i.id_itr FROM Itr i WHERE i.nombre = :nombre", Long.class
-        );
-        query.setParameter("nombre", nombreItr);
+	public Long obtenerIdPorNombre(String nombreItr) {
+	    TypedQuery<Long> query = em.createQuery(
+	        "SELECT i.idItr FROM Itr i WHERE UPPER(i.nombre) = UPPER(:nombre)", Long.class
+	    );
+	    query.setParameter("nombre", nombreItr);
 
-        Long itrId = query.getSingleResult();
-        return itrId;
-    }
+	    try {
+	        Long itrId = query.getSingleResult();
+	        return itrId;
+	    } catch (NoResultException e) {
+	    	System.out.println("no se encontró la id");
+	        return null; // Retorna null si no se encuentra ningún resultado
+	    }
+	}
 	@Override
     public Itr bajaLogicaItr(long idItr) throws ServiciosException {
 		Itr itr = null;

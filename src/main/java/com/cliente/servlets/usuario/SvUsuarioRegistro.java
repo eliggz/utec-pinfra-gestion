@@ -13,10 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cliente.contexto.Fabrica;
+import com.cliente.servicios.ServiceEstado;
 import com.cliente.servicios.ServiceItr;
 import com.cliente.servicios.ServiceRol;
+import com.cliente.servicios.ServiceUsuario;
+import com.cliente.servicios.ServiceUsuarioAnalista;
 import com.servidor.entidades.Itr;
 import com.servidor.entidades.Rol;
+import com.servidor.entidades.Usuario;
+import com.servidor.entidades.UsuarioAnalista;
+import com.servidor.entidades.UsuarioTutor;
+import com.servidor.entidades.UsuarioEstudiante;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -81,31 +88,72 @@ public class SvUsuarioRegistro extends HttpServlet {
 		Itr itr = ServiceItr.encontrarItrPorNombre(request.getParameter("itr"));
 		String rolString = request.getParameter("rol");
 		Long idRol = null;
+		Rol rol = null;
 		switch (rolString.toLowerCase()) {
 	        case "analista":
 	            idRol = 1l;
+	            rol = ServiceRol.buscarRol(idRol);
 	            break;
 	        case "tutor":
 	        	idRol = 2l;
+	        	rol = ServiceRol.buscarRol(idRol);
 	            break;
 	        case "estudiante":
 	        	idRol = 3l;
+	        	rol = ServiceRol.buscarRol(idRol);
 	            break;
 	    }
-		Rol rol = ServiceRol.buscarRol(idRol);
 		
-		if(request.getParameter("area") != null || request.getParameter("rolTutor") != null) {
+		if (rol == null) {
+			System.out.println("el rol es null");
+		}
+		
+		
+		Usuario usuario = new Usuario();
+		usuario.setNombre1(nombre1);
+		usuario.setNombre2(nombre2);
+		usuario.setApellido1(apellido1);
+		usuario.setApellido2(apellido2);
+		usuario.setDocumento(documento);
+		usuario.setFechaNacimiento(fechaNacimiento);
+		usuario.setMailInstitucional(mailInstitucional);
+		usuario.setMailPersonal(mailPersonal);
+		usuario.setNombreUsuario(nombreUsuario);
+		usuario.setPassword(password);
+		usuario.setTelefono(telefono);
+		usuario.setDepartamento(departamento);
+		usuario.setCiudad(ciudad);
+		usuario.setItr(itr);
+		ServiceEstado.asignarEstadoUsuario(usuario, 1l);  // el ID 1 es para inactivo!!
+		ServiceUsuario.crearUsuario(usuario);
+		
+		if(rol.getIdRol()==1l) {
+			UsuarioAnalista usuarioAnalista = new UsuarioAnalista();
+			usuarioAnalista.setUsuario(usuario);
+			ServiceUsuarioAnalista.crearUsuarioAnalista(usuarioAnalista);
+		} else if(rol.getIdRol()==2l) {
 			String area = request.getParameter("area");
 			String rolTutor = request.getParameter("rolTutor");
 			System.out.println("area: " + area);
 			System.out.println("rolTutor: " + rolTutor);
-		} 
-		
-		if(request.getParameter("generacion") != null) {
+			
+			UsuarioTutor usuarioTutor = new UsuarioTutor();
+			usuarioTutor.setUsuario(usuario);
+			usuarioTutor.setArea(area);
+			usuarioTutor.setRol(rol);
+			
+			
+		} else if(rol.getIdRol()==3l) {
 			int generacion=  Integer.parseInt(request.getParameter("generacion"));
 			System.out.println("generacion: " + generacion);
-		
+			UsuarioEstudiante usuarioEstudiante = new UsuarioEstudiante();
+			usuarioEstudiante.setUsuario(usuario);
+			usuarioEstudiante.setGeneracion(generacion);
 		}
+		
+		
+		
+		
 		System.out.println("nombre1: " + nombre1);
 		System.out.println("nombre2: " + nombre2);
 		System.out.println("apellido1: " + apellido1);
