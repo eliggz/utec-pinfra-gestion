@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +13,7 @@
 		<nav>
 			<ul>
 				<li><a href="/Proyecto-PInfra/index.jsp">Inicio</a></li>
-				<li><a href="/Proyecto-PInfra/pages/login/index.jsp">Inicio
-						de sesi√≥n</a></li>
+				<li><a href="/Proyecto-PInfra/pages/registro/registro.jsp">Registrarme</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -30,13 +28,12 @@
 		<%
 		}
 		%>
-		
+
 		<form action="/Proyecto-PInfra/SvUsuarioLogin" method="POST">
-			<label> Nombre de usuario 
-			<input type="text" name="nombreUsuario" placeholder="Ingrese su usuario...">
-			</label> 
-			<label> Contrase√±a 
-			<input type="password" name="clave" placeholder="Ingrese su contrase√±a...">
+			<label> Nombre de usuario <input type="text"
+				name="nombreUsuario" placeholder="Ingrese su usuario...">
+			</label> <label> ContraseÒa <input type="password" name="clave"
+				placeholder="Ingrese su contraseÒa...">
 			</label>
 
 			<button type="submit">Iniciar</button>
