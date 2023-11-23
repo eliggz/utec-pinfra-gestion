@@ -60,14 +60,16 @@ public class ItrBean implements ItrBeanRemote {
         }
     }
 	@Override
-    public boolean existeItrConNombre(String nombreItr) {
+    public Long obtenerIdPorNombre(String nombreItr) {
+		
+		
         TypedQuery<Long> query = em.createQuery(
-            "SELECT COUNT(i) FROM Itr i WHERE i.nombre = :nombre", Long.class
+            "SELECT i.id_itr FROM Itr i WHERE i.nombre = :nombre", Long.class
         );
         query.setParameter("nombre", nombreItr);
 
-        Long count = query.getSingleResult();
-        return count > 0;
+        Long itrId = query.getSingleResult();
+        return itrId;
     }
 	@Override
     public Itr bajaLogicaItr(long idItr) throws ServiciosException {

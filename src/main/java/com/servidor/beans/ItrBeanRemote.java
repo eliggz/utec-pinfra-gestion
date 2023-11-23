@@ -21,7 +21,7 @@ public interface ItrBeanRemote {
 
 	ArrayList<Itr> listarItrEstado();
 
-	boolean existeItrConNombre(String nombreItr);
+	Long obtenerIdPorNombre(String nombreItr);
 
 	Itr bajaLogicaItr(long idItr) throws ServiciosException;
 

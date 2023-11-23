@@ -42,6 +42,29 @@ public static Itr eliminarItr(Itr itr) {
 	}
 }
 
+public static Itr buscarItr(Long itr) {
+	try {
+		var itrBean = getService();
+		return itrBean.buscarItr(itr);
+	} catch (Exception e) {
+		return null;
+	}
+}
+
+public static Itr encontrarItrPorNombre(String nombre) {
+	try {
+		var itrBean = getService();
+	Long idItr = itrBean.obtenerIdPorNombre(nombre);
+	Itr itr = itrBean.buscarItr(idItr);
+	return itr;
+	
+	} catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("No se encontó la itr por nombre");
+		return null;
+	}
+}
+
 public static List<Itr> listarTodasLasItr() {
 	try {
 		var itrBean = getService();

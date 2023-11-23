@@ -24,7 +24,7 @@
 	<main>
 		<h1>Registro de usuario</h1>
 
-		<form action="registrar.jsp" method="post">
+		<form action="/Proyecto-PInfra/SvUsuarioRegistro" method="POST">
 
 			<table>
 				<tr>
@@ -112,8 +112,8 @@
 					<td><select name="itr">
 							<option value="Minas">Minas</option>
 							<option value="Melo">Melo</option>
-							<option value="Durazno">Melo</option>
-							<option value="Fray Bentos">Melo</option>
+							<option value="Durazno">Durazno</option>
+							<option value="Fray Bentos">Fray Bentos</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -140,6 +140,11 @@
 							<option value="Encargado">Encargado</option>
 					</select></td>
 				</tr>
+				<tr id="generacionRow" style="display: none;">
+					<td>Generación</td>
+					<td><input type="number" name="generacion" id="generacionSelect" placeholder="Escriba aquí su generación..." oninput="validarNumero(event)"></td>
+				</tr>
+				
 				<tr>
 					<td colspan="2"><input type="submit" value="Registrar" /></td>
 				</tr>
@@ -195,19 +200,35 @@
  actualizarCiudades();
 
  // Definir los tipos de Rol
- function actualizarCampos() {
-	var rolSelect = document.getElementById("rolSelect");
-	var areaRow = document.getElementById("areaRow");
-	var rolTutorRow = document.getElementById("rolTutorRow");
+function actualizarCampos() {
+    var rolSelect = document.getElementById("rolSelect");
+    var areaRow = document.getElementById("areaRow");
+    var rolTutorRow = document.getElementById("rolTutorRow");
+    var generacionRow = document.getElementById("generacionRow"); // Agregar paréntesis faltante después de document.getElementById
 
-	// Mostrar u ocultar campos según el rol seleccionado
-	if (rolSelect.value === "Tutor") {
-		areaRow.style.display = "table-row";
-		rolTutorRow.style.display = "table-row";
-	} else {
-		areaRow.style.display = "none";
-		rolTutorRow.style.display = "none";
-	}
+    // Mostrar u ocultar campos según el rol seleccionado
+    if (rolSelect.value === "Tutor") {
+        areaRow.style.display = "table-row";
+        rolTutorRow.style.display = "table-row";
+    } else {
+        areaRow.style.display = "none";
+        rolTutorRow.style.display = "none";
+    }
+
+    if (rolSelect.value === "Estudiante") {
+        generacionRow.style.display = "table-row";
+    } else {
+        generacionRow.style.display = "none";
+    } 
+}
+
+function validarNumero(event) {
+    const input = event.target;
+    const valor = input.value.trim();
+
+    if (!valor.match(/^\d+$/)) {
+        input.value = valor.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un número
+    }
 }
 </script>
 </body>
