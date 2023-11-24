@@ -1,0 +1,109 @@
+@charset "ISO-8859-1";
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos del encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #ddd;
+}
+
+/* Estilos del contenedor principal */
+main {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+form button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.pikachu-container {
+    position: relative;
+    width: 600px; /* Ancho del contenedor ajustado */
+    height: 200px; /* Alto del contenedor ajustado */
+    margin: 20px auto; /* Margen ajustado */
+    overflow: hidden; /* Oculta partes de la imagen que se salgan del contenedor */
+}
+
+.pikachu {
+    position: absolute;
+    width: 300px; /* Ancho de Pikachu ajustado */
+    animation: moverPikachu 4s infinite; /* Duración y repetición de la animación */
+}
+
+/* Definición de la animación */
+@keyframes moverPikachu {
+    0% {
+        left: 0; /* Posición inicial a la izquierda */
+    }
+    50% {
+        left: calc(100% - 300px); /* Posición en la mitad del contenedor */
+    }
+    100% {
+        left: 0; /* Vuelve a la posición inicial */
+    }
+}
+

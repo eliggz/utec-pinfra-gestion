@@ -2,8 +2,9 @@ package com.cliente.contexto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-
+import com.cliente.servicios.ServiceItr;
 import com.servidor.entidades.Estado;
 import com.servidor.entidades.Itr;
 import com.servidor.entidades.Rol;
@@ -41,6 +42,11 @@ public class Fabrica {
 
 	public static Usuario getUsuarioLogueado() {
 		return usuarioLogueado;
+	}
+	
+	public static List<Itr> getListaDeItrs(){
+		 List<Itr> listaDeItrs = ServiceItr.listarTodasLasItr();
+		return listaDeItrs;	
 	}
 
 }
