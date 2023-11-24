@@ -123,6 +123,7 @@ public class SvUsuarioRegistro extends HttpServlet {
 		usuario.setDepartamento(departamento);
 		usuario.setCiudad(ciudad);
 		usuario.setItr(itr);
+		usuario.setRol(rol);
 		ServiceEstado.asignarEstadoUsuario(usuario, 1l);  // el ID 1 es para inactivo!!
 		
 		Usuario usuarioEnLaBase = ServiceUsuario.crearUsuario(usuario);
