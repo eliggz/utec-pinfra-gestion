@@ -3,7 +3,6 @@ package com.cliente.servicios;
 import javax.naming.InitialContext;
 
 import com.servidor.beans.UsuarioAnalistaBeanRemote;
-import com.servidor.beans.UsuarioBeanRemote;
 import com.servidor.entidades.UsuarioAnalista;
 
 public class ServiceUsuarioAnalista {

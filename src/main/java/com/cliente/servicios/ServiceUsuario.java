@@ -28,20 +28,17 @@ public class ServiceUsuario {
 		try {
 			var usuarioBean = getService();
 			Usuario usuarioEncontrado = new Usuario();
-
-			if (nombreUsuario.equals("pepe.lopez") && clave.equals("123")) {
-				return usuarioEncontrado;
+			for (var aux : usuarioBean.listarUsuarios()) {
+				if (aux.getNombreUsuario().equals(nombreUsuario) && aux.getPassword().equals(clave)) {
+					usuarioEncontrado = aux;
+					break;
+				}
 			}
-//			for (var aux : usuarioBean.listarUsuarios()) {
-//				if (aux.getNombreUsuario().equals(nombreUsuario) && aux.getPassword().equals(clave)) {
-//					usuarioEncontrado = aux;
-//					break;
-//				}
-//			}
-			return null;
+			return usuarioEncontrado;
 		} catch (Exception e) {
 			return null;
 		}
+	
 	}
 
 	public static Usuario crearUsuario(Usuario usuario) {

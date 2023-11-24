@@ -26,5 +26,7 @@ public interface UsuarioBeanRemote {
 
 	List<Usuario> seleccionarUsuarios(String criterioNombre,
 			String criterioDepartamento, Boolean criterioActivo) throws PersistenciaException;
-	Usuario buscarEmpleado(Long id);
+
+
+	Usuario buscarUsuario(Long id);
 }

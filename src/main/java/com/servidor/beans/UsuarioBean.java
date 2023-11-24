@@ -75,7 +75,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 			return (ArrayList<Usuario>) query.getResultList();
 		} catch (Exception e) {
 			// TODO: handle exception
-			throw new ServiciosException("No se pudo obtener la Usuarioes");
+			throw new ServiciosException("No se pudo obtener la Usuarios");
 		}
 	}
 
@@ -110,7 +110,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 
 
 	@Override
-	public Usuario buscarEmpleado(Long id) {
+	public Usuario buscarUsuario(Long id) {
 		Usuario Usuario = em.find(Usuario.class, id);
 		return Usuario;
 	}

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cliente.contexto.Fabrica;
 import com.cliente.servicios.ServiceUsuario;
+import com.servidor.entidades.Usuario;
 
 @WebServlet(name = "ServletLogin", urlPatterns = "/SvUsuarioLogin")
 public class SvUsuarioLogin extends HttpServlet {
@@ -40,13 +41,13 @@ public class SvUsuarioLogin extends HttpServlet {
 			return;
 		}
 
-		var usuarioLogueado = ServiceUsuario.login(nombreUsuario, clave);
+		Usuario usuarioLogueado = ServiceUsuario.login(nombreUsuario, clave);
 
 		if (usuarioLogueado == null) {
 			request.getSession().setAttribute("errorMensaje", "El usuario no existe");
 			response.sendRedirect("/Proyecto-PInfra/pages/login/index.jsp");
 			return;
-		}
+		} 
 
 		request.getSession().removeAttribute("errorMensaje");
 		request.getSession().setAttribute("usuarioLogueado", usuarioLogueado);
