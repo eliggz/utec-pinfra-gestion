@@ -62,46 +62,35 @@ request.getSession().removeAttribute("errorMensaje");
 	<% 
     } 
     %>
-	
-
-
-
-
-
-				<tr>
-					<td>2</td>
-					<td>NombreITR2</td>
-					<td>Depto2</td>
-					<td>
-						<button class="btn-delete">Eliminar</button>
-						<button class="btn-edit">Modificar</button>
-					</td>
-				</tr>
-				<!-- Agregar más filas aquí si es necesario -->
 			</tbody>
 		</table>
 
-		<!-- Botón para agregar un nuevo ITR -->
 		<div class="add-btn" onclick="mostrarFormulario()">+</div>
 
-		<!-- Formulario para agregar/actualizar ITR (oculto inicialmente) -->
-		<div id="formularioAgregar">
-			<h2>Agregar ITR</h2>
-			<form action="agregarITR.jsp" method="post">
-				<input type="hidden" name="id" id="id"> <label for="nombre">Nombre:</label>
-				<input type="text" id="nombre" name="nombre" required><br>
-				<br> <label for="departamento">Departamento:</label> <input
-					type="text" id="departamento" name="departamento" required><br>
-				<br> <input type="submit" value="Guardar">
-			</form>
-		</div>
+	<div id="formularioAgregar" class="formulario-Agregar">
+    <h2>Agregar ITR</h2>
+    <form action="/Proyecto-PInfra/SvItrAgregar" method="post">
+        <input type="hidden" name="id" id="id"> 
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <br> 
+        <label for="departamento">Departamento:</label> 
+        <input type="text" id="departamento" name="departamento" required><br>
+        <br> 
+        <input type="submit" value="Guardar">
+        <button type="button" onclick="ocultarFormulario()">Cancelar</button>
+    </form>
+</div>
 	</div>
 
-	<script>
-        // Función para mostrar el formulario al hacer clic en el botón "+"
-        function mostrarFormulario() {
-            document.getElementById('formulario').style.display = 'block';
-        }
-    </script>
+<script>
+    function mostrarFormulario() {
+        document.getElementById('formularioAgregar').style.display = 'block';
+    }
+
+    function ocultarFormulario() {
+        document.getElementById('formularioAgregar').style.display = 'none';
+    }
+</script>
 </body>
 </html>
