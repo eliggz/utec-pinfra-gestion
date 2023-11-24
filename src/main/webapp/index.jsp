@@ -17,12 +17,12 @@ request.getSession().removeAttribute("errorMensaje");
 	<header>
 		<nav>
 			<ul>
-				<li><a href="/Proyecto-PInfra/index.jsp">Inicio</a></li>
+				
 				<li><a href="/Proyecto-PInfra/pages/login/index.jsp">Iniciar
 						sesión</a></li>
 				<li><a href="/Proyecto-PInfra/pages/registro/registro.jsp">Registrarme</a></li>
 
-				<li>
+		<%-- 		<li>
 					<%
 					if (request.getSession().getAttribute("usuarioLogueado") != null) {
 						Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
@@ -38,7 +38,7 @@ request.getSession().removeAttribute("errorMensaje");
 					<%
 					}
 					%>
-				</li>
+				</li> --%>
 			</ul>
 		</nav>
 	</header>
@@ -58,6 +58,8 @@ request.getSession().removeAttribute("errorMensaje");
 		<p>Descubre un mundo de oportunidades y gestiona de manera
 			eficiente.</p>
 
+  <div class="pikachu-container">
+        <img src="https://www.pngall.com/wp-content/uploads/5/Pikachu-PNG-Image-File.png" alt="Pikachu" class="pikachu">
 	</main>
 </body>
 </html>
