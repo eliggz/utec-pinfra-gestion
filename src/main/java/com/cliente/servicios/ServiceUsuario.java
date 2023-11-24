@@ -27,14 +27,18 @@ public class ServiceUsuario {
 	public static Usuario login(String nombreUsuario, String clave) {
 		try {
 			var usuarioBean = getService();
-			Usuario usuarioEncontrado = new Usuario();
+			Usuario usuarioEncontrado= null;
 			for (var aux : usuarioBean.listarUsuarios()) {
 				if (aux.getNombreUsuario().equals(nombreUsuario) && aux.getPassword().equals(clave)) {
 					usuarioEncontrado = aux;
 					break;
 				}
 			}
-			return usuarioEncontrado;
+			if(usuarioEncontrado!=null) {
+				return usuarioEncontrado;				
+			}else {
+				return null;				
+			}
 		} catch (Exception e) {
 			return null;
 		}

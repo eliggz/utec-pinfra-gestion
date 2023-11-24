@@ -15,7 +15,7 @@
 		<nav>
 			<ul>
 				<li><a href="/Proyecto-PInfra/index.jsp">Inicio</a></li>
-				<li><a href="/Proyecto-PInfra/pages/login/index.jsp">Iniciar
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Iniciar
 						sesión</a></li>
 	</header>
 	</ul>

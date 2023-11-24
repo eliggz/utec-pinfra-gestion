@@ -37,7 +37,7 @@ public class SvUsuarioLogin extends HttpServlet {
 
 		if (nombreUsuario.isEmpty() || clave.isEmpty()) {
 			request.getSession().setAttribute("errorMensaje", "Los campos son obligatorios");
-			response.sendRedirect("/Proyecto-PInfra/pages/login/index.jsp");
+			response.sendRedirect("/Proyecto-PInfra/pages/login/login.jsp");
 			return;
 		}
 
@@ -45,7 +45,7 @@ public class SvUsuarioLogin extends HttpServlet {
 
 		if (usuarioLogueado == null) {
 			request.getSession().setAttribute("errorMensaje", "El usuario no existe");
-			response.sendRedirect("/Proyecto-PInfra/pages/login/index.jsp");
+			response.sendRedirect("/Proyecto-PInfra/pages/login/login.jsp");
 			return;
 		} 
 
