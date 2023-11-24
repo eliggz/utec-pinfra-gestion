@@ -17,14 +17,12 @@ request.getSession().removeAttribute("errorMensaje");
 	href="/Proyecto-PInfra/pages/configuracion/styleITR.css">
 </head>
 <body>
-	<header>
+<header>
 		<nav>
 			<ul>
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Iniciar
-						sesión</a></li>
-				<li><a href="/Proyecto-PInfra/pages/registro/registro.jsp">Registrarme</a></li>
-				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li>
-				<!-- hay que hacer el servlet para esto! -->
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Gestión de Usuarios</a></li>
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Mi perfil</a></li>
+				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li> <!-- hay que hacer el servlet para esto! -->
 
 			</ul>
 		</nav>
@@ -32,7 +30,6 @@ request.getSession().removeAttribute("errorMensaje");
 
 	<div class="container">
 		<h1>Lista de ITRs</h1>
-
 		<!-- Tabla para mostrar los datos -->
 		<table>
 			<thead>
@@ -44,22 +41,22 @@ request.getSession().removeAttribute("errorMensaje");
 				</tr>
 			</thead>
 			<tbody>
-				
-					<%
+
+				<%
 	List<Itr> listaITR = Fabrica.getListaDeItrs();
         for (Itr itr : listaITR) {
         	System.out.println(itr.getNombre());
     %>
-    <tr>
-	<td><%=itr.getIdItr()%></td>
-	<td><%=itr.getNombre()%></td>
-	<td><%=itr.getDepartamento()%></td>
-	<td>
-	<button class="btn-delete">Eliminar</button>
-	<button class="btn-edit">Modificar</button>
-	</td>
-	</tr>
-	<% 
+				<tr>
+					<td><%=itr.getIdItr()%></td>
+					<td><%=itr.getNombre()%></td>
+					<td><%=itr.getDepartamento()%></td>
+					<td>
+						<button class="btn-delete">Eliminar</button>
+						<button class="btn-edit">Modificar</button>
+					</td>
+				</tr>
+				<% 
     } 
     %>
 			</tbody>
@@ -67,23 +64,19 @@ request.getSession().removeAttribute("errorMensaje");
 
 		<div class="add-btn" onclick="mostrarFormulario()">+</div>
 
-	<div id="formularioAgregar" class="formulario-Agregar">
-    <h2>Agregar ITR</h2>
-    <form action="/Proyecto-PInfra/SvItrAgregar" method="post">
-        <input type="hidden" name="id" id="id"> 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
-        <br> 
-        <label for="departamento">Departamento:</label> 
-        <input type="text" id="departamento" name="departamento" required><br>
-        <br> 
-        <input type="submit" value="Guardar">
-        <button type="button" onclick="ocultarFormulario()">Cancelar</button>
-    </form>
-</div>
+		<div id="formularioAgregar" class="formulario-Agregar">
+			<h2>Agregar ITR</h2>
+			<form action="/Proyecto-PInfra/SvItrAgregar" method="post">
+				<input type="hidden" name="id" id="id"> <label for="nombre">Nombre:</label>
+				<input type="text" id="nombre" name="nombre" required><br>
+				<br> <label for="departamento">Departamento:</label> <input
+					type="text" id="departamento" name="departamento" required><br>
+				<br> <input type="submit" value="Guardar">
+				<button type="button" onclick="ocultarFormulario()">Cancelar</button>
+			</form>
+		</div>
 	</div>
-
-<script>
+	<script>
     function mostrarFormulario() {
         document.getElementById('formularioAgregar').style.display = 'block';
     }

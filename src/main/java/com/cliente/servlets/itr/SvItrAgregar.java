@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cliente.servicios.ServiceItr;
+import com.servidor.entidades.Estado;
+import com.servidor.entidades.Itr;
+
 /**
  * Servlet implementation class SvItrAgregar
  */
@@ -36,6 +40,20 @@ public class SvItrAgregar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		String nombreItr = request.getParameter("nombre");
+		String departamentoItr = request.getParameter("departamento");
+		
+		Itr itr = new Itr();
+		Estado estado = new Estado();
+		estado.setIdEstado(2);
+		itr.setDepartamento(departamentoItr);
+		itr.setNombre(nombreItr);
+		itr.setEstado(estado);
+		
+		Itr itrPersistida = ServiceItr.crearItr(itr);
+		
+		
 	}
 
 }
