@@ -156,4 +156,10 @@ public class ItrBean implements ItrBeanRemote {
 
 	}
 
+	@Override
+	public ArrayList<Itr> listarItrEstado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

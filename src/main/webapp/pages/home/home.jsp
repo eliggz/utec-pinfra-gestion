@@ -47,8 +47,8 @@ request.getSession().removeAttribute("errorMensaje");
 		<p>Descubre un mundo de oportunidades y gestiona de manera
 			eficiente.</p>
 
-  <div class="pikachu-container">
-        <img src="https://www.pngall.com/wp-content/uploads/5/Pikachu-PNG-Image-File.png" alt="Pikachu" class="pikachu">
+  <!-- <div class="pikachu-container">
+        <img src="https://www.pngall.com/wp-content/uploads/5/Pikachu-PNG-Image-File.png" alt="Pikachu" class="pikachu"> -->
 	</main>
 	<script>
 function cerrarSesion() {
