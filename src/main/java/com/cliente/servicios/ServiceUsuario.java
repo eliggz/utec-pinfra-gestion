@@ -71,5 +71,21 @@ public class ServiceUsuario {
 			return null;
 		}
 	}
+	public static Usuario buscarUsuario(Long usu) {
+		try {
+			var usuarioBean = getService();
+			return usuarioBean.buscarUsuario(usu);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public static Usuario actualizarUsuario(Usuario usu) {
+		try {
+			var usuarioBean = getService();
+			return usuarioBean.actualizarUsuario(usu);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 }

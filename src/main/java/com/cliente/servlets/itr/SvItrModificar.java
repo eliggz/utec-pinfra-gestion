@@ -1,4 +1,4 @@
-package com.cliente.servlets.usuario;
+package com.cliente.servlets.itr;
 
 import java.awt.image.RescaleOp;
 import java.io.IOException;
