@@ -21,13 +21,15 @@ request.getSession().removeAttribute("errorMensaje");
 	<header>
 		<nav>
 			<ul>
+			<li><a href="/Proyecto-PInfra/pages/home/home.jsp">Inicio</a></li>
 			<% if(Fabrica.getUsuarioLogueado().getRol().getIdRol()==1l) { %>
 				<li><a href="/Proyecto-PInfra/pages/configuracion/usuarios.jsp">Gestión de Usuarios</a></li>
 				
 				
 				<% } %>
+					
 				<li><a href="/Proyecto-PInfra/pages/configuracion/perfil.jsp">Mi perfil</a></li>
-				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li> <!-- hay que hacer el servlet para esto! -->
+				
 			</ul>
 		</nav>
 	</header>

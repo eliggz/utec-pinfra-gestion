@@ -23,7 +23,7 @@ request.getSession().removeAttribute("errorMensaje");
 				<li><a href="/Proyecto-PInfra/pages/configuracion/itr.jsp">Gestión de Itrs</a></li>
 				
 				<% } %>
-				<li><a href="/Proyecto-PInfra/pages/home/home.jsp">Mi perfil</a></li>
+				<li><a href="/Proyecto-PInfra/pages/configuracion/perfil.jsp">Mi perfil</a></li>
 				<form action="/Proyecto-PInfra/SvLogout" method="post">
 				<li><button onclick="cerrarSesion()">Cerrar sesión</button></li>
 				</form>
