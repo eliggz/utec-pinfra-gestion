@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USUARIOS_IDUSUARIO_GENERATOR", sequenceName="USUARIOS_SEQ")
+	@SequenceGenerator(name="USUARIOS_IDUSUARIO_GENERATOR", sequenceName="USUARIOS_SEQ", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIOS_IDUSUARIO_GENERATOR")
 	@Column(name="ID_USUARIO")
 	private long idUsuario;

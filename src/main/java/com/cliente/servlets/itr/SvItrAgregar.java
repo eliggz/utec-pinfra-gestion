@@ -53,6 +53,11 @@ public class SvItrAgregar extends HttpServlet {
 		
 		Itr itrPersistida = ServiceItr.crearItr(itr);
 		
+		if (itrPersistida!= null) {
+			response.sendRedirect("/Proyecto-PInfra/pages/configuracion/itr.jsp");
+		}
+		
+		
 		
 	}
 

@@ -17,12 +17,15 @@ request.getSession().removeAttribute("errorMensaje");
 	href="/Proyecto-PInfra/pages/configuracion/styleITR.css">
 </head>
 <body>
-<header>
+	<header>
 		<nav>
 			<ul>
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Gestión de Usuarios</a></li>
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Mi perfil</a></li>
-				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li> <!-- hay que hacer el servlet para esto! -->
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Gestión
+						de Usuarios</a></li>
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Mi
+						perfil</a></li>
+				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li>
+				<!-- hay que hacer el servlet para esto! -->
 
 			</ul>
 		</nav>
@@ -53,12 +56,30 @@ request.getSession().removeAttribute("errorMensaje");
 					<td><%=itr.getDepartamento()%></td>
 					<td>
 						<button class="btn-delete">Eliminar</button>
-						<button class="btn-edit">Modificar</button>
+						<button class="btn-edit"
+							onclick="mostrarFormularioEdicion('<%= itr.getIdItr() %>')">Modificar</button>
+					</td>
+				</tr>
+				<!-- Formulario de edición oculto por defecto -->
+				<tr id="formEditarItr_<%= itr.getIdItr() %>" style="display: none;">
+					<td colspan="4">
+						<!-- Generar el formulario de edición de la Itr -->
+						<form action="/Proyecto-PInfra/SvItrModificar" method="post">
+							<input type="hidden" name="id" value="<%= itr.getIdItr() %>">
+							<label for="editNombre_<%= itr.getIdItr() %>">Nombre:</label> <input
+								type="text" id="editNombre_<%= itr.getIdItr() %>" name="nombre"
+								value="<%= itr.getNombre() %>"> <label
+								for="editDepartamento_<%= itr.getIdItr() %>">Departamento:</label>
+							<input type="text" id="editDepartamento_<%= itr.getIdItr() %>"
+								name="departamento" value="<%= itr.getDepartamento() %>">
+							<!-- Otros campos de la Itr -->
+							<button type="submit">Guardar Cambios</button>
+						</form>
 					</td>
 				</tr>
 				<% 
     } 
-    %>
+%>
 			</tbody>
 		</table>
 
@@ -84,6 +105,13 @@ request.getSession().removeAttribute("errorMensaje");
     function ocultarFormulario() {
         document.getElementById('formularioAgregar').style.display = 'none';
     }
+
+    function mostrarFormularioEdicion(id) {
+        var form = document.getElementById('formEditarItr_' + id);
+        form.style.display = (form.style.display === 'none') ? 'table-row' : 'none';
+    }
+
+    
 </script>
 </body>
 </html>

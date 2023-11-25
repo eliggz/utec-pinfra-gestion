@@ -28,9 +28,6 @@ public class Rol implements Serializable {
 	@OneToMany(mappedBy="rol")
 	private List<Usuario> usuarios;
 
-	//bi-directional many-to-one association to UsuarioTutor
-	@OneToMany(mappedBy="rol")
-	private List<UsuarioTutor> usuarioTutors;
 
 	public Rol() {
 	}
@@ -82,26 +79,6 @@ public class Rol implements Serializable {
 		return usuario;
 	}
 
-	public List<UsuarioTutor> getUsuarioTutors() {
-		return this.usuarioTutors;
-	}
 
-	public void setUsuarioTutors(List<UsuarioTutor> usuarioTutors) {
-		this.usuarioTutors = usuarioTutors;
-	}
-
-	public UsuarioTutor addUsuarioTutor(UsuarioTutor usuarioTutor) {
-		getUsuarioTutors().add(usuarioTutor);
-		usuarioTutor.setRol(this);
-
-		return usuarioTutor;
-	}
-
-	public UsuarioTutor removeUsuarioTutor(UsuarioTutor usuarioTutor) {
-		getUsuarioTutors().remove(usuarioTutor);
-		usuarioTutor.setRol(null);
-
-		return usuarioTutor;
-	}
 
 }

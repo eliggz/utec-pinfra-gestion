@@ -16,17 +16,12 @@ public class UsuarioTutor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USUARIO_TUTOR_IDTUTOR_GENERATOR", sequenceName="TUTORES_SEQ")
+	@SequenceGenerator(name="USUARIO_TUTOR_IDTUTOR_GENERATOR", sequenceName="TUTORES_SEQ", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_TUTOR_IDTUTOR_GENERATOR")
 	@Column(name="ID_TUTOR")
 	private long idTutor;
 
 	private String area;
-
-	//bi-directional many-to-one association to Rol
-	@ManyToOne
-	@JoinColumn(name="ID_ROL")
-	private Rol rol;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -50,14 +45,6 @@ public class UsuarioTutor implements Serializable {
 
 	public void setArea(String area) {
 		this.area = area;
-	}
-
-	public Rol getRol() {
-		return this.rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
 	}
 
 	public Usuario getUsuario() {
