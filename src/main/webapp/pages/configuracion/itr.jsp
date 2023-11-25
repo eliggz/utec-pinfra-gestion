@@ -2,6 +2,7 @@
 <%@page import="com.servidor.entidades.Usuario"%>
 <%@page import="com.cliente.contexto.Fabrica"%>
 <%@page import="com.servidor.entidades.Itr"%>
+<%@page import="com.servidor.entidades.Estado"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -20,26 +21,26 @@ request.getSession().removeAttribute("errorMensaje");
 	<header>
 		<nav>
 			<ul>
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Gestión
-						de Usuarios</a></li>
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Mi
-						perfil</a></li>
-				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li>
-				<!-- hay que hacer el servlet para esto! -->
-
+			<% if(Fabrica.getUsuarioLogueado().getRol().getIdRol()==1l) { %>
+				<li><a href="/Proyecto-PInfra/pages/configuracion/usuarios.jsp">Gestión de Usuarios</a></li>
+				
+				
+				<% } %>
+				<li><a href="/Proyecto-PInfra/pages/configuracion/perfil.jsp">Mi perfil</a></li>
+				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li> <!-- hay que hacer el servlet para esto! -->
 			</ul>
 		</nav>
 	</header>
 
 	<div class="container">
-		<h1>Lista de ITRs</h1>
-		<!-- Tabla para mostrar los datos -->
+		<h1>Lista de ITRs</h1>	<!-- Tabla para mostrar los datos -->
 		<table>
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
 					<th>Departamento</th>
+					<th>Estado</th>
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -54,6 +55,7 @@ request.getSession().removeAttribute("errorMensaje");
 					<td><%=itr.getIdItr()%></td>
 					<td><%=itr.getNombre()%></td>
 					<td><%=itr.getDepartamento()%></td>
+					<td><%=itr.getEstado().getDescripcion()%></td>
 					<td>
 						<button class="btn-delete">Eliminar</button>
 						<button class="btn-edit"
@@ -72,9 +74,18 @@ request.getSession().removeAttribute("errorMensaje");
 								for="editDepartamento_<%=itr.getIdItr()%>">Departamento:</label>
 							<input type="text" id="editDepartamento_<%=itr.getIdItr()%>"
 								name="departamento" value="<%=itr.getDepartamento()%>">
-							<!-- Otros campos de la Itr -->
-							<button type="submit">Guardar Cambios</button>
-						</form> 
+							   <select id="editEstado_<%= itr.getIdItr() %>" name="estado">
+                        <% 
+                        List<Estado> listaEstados = Fabrica.getListaDeEstados();
+                        for (Estado aux : listaEstados) {
+                        %>
+                        <option value="<%= aux.getIdEstado() %>" <%= (aux.getIdEstado() == itr.getEstado().getIdEstado()) ? "selected" : "" %>><%= aux.getDescripcion() %></option>
+                        <% } %>
+                    </select>
+                    <!-- Otros campos de la Itr -->
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" onclick="ocultarFormulario('<%= itr.getIdItr() %>')">Cancelar</button>
+                </form>
 						
 						<% if (request.getSession().getAttribute("errorMensaje") != null)%> 
 						<span><%=request.getSession().getAttribute("errorMensaje")%></span>

@@ -12,7 +12,7 @@ import com.servidor.entidades.Usuario;
 
 public class ServiceEstado {
 
-	
+
 	private static EstadoBeanRemote getService() {
 		try {
 			EstadoBeanRemote estadoBean = (EstadoBeanRemote) InitialContext
@@ -28,7 +28,7 @@ public class ServiceEstado {
 			var estadoBean = getService();
 			Estado e = estadoBean.buscarEstado(estado);
 			usuario.setEstado(e);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,10 +40,47 @@ public class ServiceEstado {
 			var estadoBean = getService();
 			Estado e = estadoBean.buscarEstado(estado);
 			itr.setEstado(e);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	public static List<Estado> listarEstados() {
+		try {
+			var estadoBean = getService();
+			return estadoBean.listarEstados();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public static Estado encontrarEstadoPorNombre(String nombre) {
+
+		try {
+			var estadoBean = getService();
+			Estado estado = estadoBean.buscarEstado(estadoBean.obtenerIdPorNombre(nombre));
+			return estado;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("No se encontó la itr por nombre");
+			return null;
+		}
+	}
+
+
+	public static Estado buscarEstado(Long id) {
+
+		try {
+			var estadoBean = getService();
+			Estado estado = estadoBean.buscarEstado(id);
+			return estado;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("No se encontó la itr por nombre");
+			return null;
+		}
+	}
 }

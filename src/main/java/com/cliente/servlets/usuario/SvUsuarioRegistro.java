@@ -90,6 +90,7 @@ public class SvUsuarioRegistro extends HttpServlet {
 		Itr itr = ServiceItr.encontrarItrPorNombre(request.getParameter("itr"));
 		String rolString = request.getParameter("rol");
 		Rol rol = null;
+	
 		
 
 		if(rolString.equals("Analista")) {
@@ -143,7 +144,7 @@ public class SvUsuarioRegistro extends HttpServlet {
 			UsuarioTutor usuarioTutor = new UsuarioTutor();
 			usuarioTutor.setUsuario(usuario);
 			usuarioTutor.setArea(area);
-			usuarioTutor.setRol(rol);
+			usuarioTutor.setRol(rolTutor);
 
 			usuarioTutor.setUsuario(usuarioEnLaBase);
 			ServiceUsuarioTutor.crearUsuarioTutor(usuarioTutor);
@@ -176,6 +177,10 @@ public class SvUsuarioRegistro extends HttpServlet {
 		System.out.println("ciudad: " + ciudad);
 		System.out.println("rol: " + rol.getNombre());
 
+		
+		if(usuarioEnLaBase != null) {
+			response.sendRedirect("/Proyecto-PInfra/pages/login/login.jsp");
+		}
 	}
 
 

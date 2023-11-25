@@ -52,7 +52,7 @@ public class SvUsuarioLogin extends HttpServlet {
 		request.getSession().removeAttribute("errorMensaje");
 		request.getSession().setAttribute("usuarioLogueado", usuarioLogueado);
 		Fabrica.setUsuarioLogueado(usuarioLogueado);
-		response.sendRedirect("/Proyecto-PInfra/index.jsp");
+		response.sendRedirect("/Proyecto-PInfra/pages/home/home.jsp");
 
 	}
 

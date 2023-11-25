@@ -17,10 +17,16 @@ request.getSession().removeAttribute("errorMensaje");
 	<header>
 		<nav>
 			<ul>
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Iniciar
-						sesión</a></li>
-				<li><a href="/Proyecto-PInfra/pages/registro/registro.jsp">Registrarme</a></li>
-				<li><a href="/Proyecto-PInfra/index.jsp">Cerrar sesión</a></li> <!-- hay que hacer el servlet para esto! -->
+				
+				<% if(Fabrica.getUsuarioLogueado().getRol().getIdRol()==1l) { %>
+				<li><a href="/Proyecto-PInfra/pages/configuracion/usuarios.jsp">Gestión de Usuarios</a></li>
+				<li><a href="/Proyecto-PInfra/pages/configuracion/itr.jsp">Gestión de Itrs</a></li>
+				
+				<% } %>
+				<li><a href="/Proyecto-PInfra/pages/home/home.jsp">Mi perfil</a></li>
+				<form action="/Proyecto-PInfra/SvLogout" method="post">
+				<li><button onclick="cerrarSesion()">Cerrar sesión</button></li>
+				</form>
 
 			</ul>
 		</nav>
@@ -44,5 +50,12 @@ request.getSession().removeAttribute("errorMensaje");
   <div class="pikachu-container">
         <img src="https://www.pngall.com/wp-content/uploads/5/Pikachu-PNG-Image-File.png" alt="Pikachu" class="pikachu">
 	</main>
+	<script>
+function cerrarSesion() {
+    // Realizar alguna lógica o llamada AJAX si es necesario
+    // Redireccionar a tu servlet de logout
+    window.location.href = "/Proyecto-PInfra/SvLogout";
+}
+</script>
 </body>
 </html>

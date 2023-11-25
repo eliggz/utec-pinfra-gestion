@@ -23,6 +23,7 @@ public class UsuarioTutor implements Serializable {
 
 	private String area;
 
+	private String rol;
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="ID_USUARIO")
@@ -53,6 +54,14 @@ public class UsuarioTutor implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 }

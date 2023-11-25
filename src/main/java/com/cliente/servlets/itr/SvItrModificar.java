@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cliente.servicios.ServiceEstado;
 import com.cliente.servicios.ServiceItr;
+import com.servidor.entidades.Estado;
 import com.servidor.entidades.Itr;
 
 @WebServlet("/SvItrModificar")
@@ -35,10 +37,19 @@ public class SvItrModificar extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String departamento = request.getParameter("departamento");
 		long idItr = Long.parseLong(request.getParameter("id"));
+		
+		Long estadoLong = Long.parseLong(request.getParameter("estado"));
+
+		Estado estado = ServiceEstado.buscarEstado(estadoLong);
+
 
 		Itr itrModificado = ServiceItr.buscarItr(idItr);
 		itrModificado.setNombre(nombre);
 		itrModificado.setDepartamento(departamento);
+		
+		if (estado != null) {
+			itrModificado.setEstado(estado);
+		}
 		if (ServiceItr.actualizarItr(itrModificado) != null) {
 			response.sendRedirect("/Proyecto-PInfra/pages/configuracion/itr.jsp");
 		}else {
