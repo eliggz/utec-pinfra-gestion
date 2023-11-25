@@ -31,6 +31,10 @@ public interface ItrBeanRemote {
 
 	Itr buscarItr(Long id) throws ServiciosException;
 
+	ArrayList<Itr> listarItrValidadas();
+
+	ArrayList<Itr> listarItrNoValidadas();
+
 
 
 }

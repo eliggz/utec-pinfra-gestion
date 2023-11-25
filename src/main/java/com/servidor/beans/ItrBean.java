@@ -111,16 +111,27 @@ public class ItrBean implements ItrBeanRemote {
 	}
 
 	@Override
-    public ArrayList<Itr> listarItrEstado() {
+    public ArrayList<Itr> listarItrValidadas() {
         try {
             TypedQuery<Itr> query = em.createQuery(
-                    "SELECT i FROM Itr i WHERE i.visible = 1", Itr.class);
+                    "SELECT i FROM Itr i WHERE i.estado = 2", Itr.class); // 2 Valido - 1 No
             return new ArrayList<>(query.getResultList());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
+	@Override
+	public ArrayList<Itr> listarItrNoValidadas() {
+		try {
+			TypedQuery<Itr> query = em.createQuery(
+					"SELECT i FROM Itr i WHERE i.estado = 1", Itr.class); // 2 Valido - 1 No
+			return new ArrayList<>(query.getResultList());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
     @Override
     public Itr actualizarItr(Itr itr) throws ServiciosException {
         try {

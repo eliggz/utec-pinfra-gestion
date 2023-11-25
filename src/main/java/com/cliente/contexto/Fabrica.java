@@ -39,6 +39,14 @@ public class Fabrica {
 		 List<Itr> listaDeItrs = ServiceItr.listarTodasLasItr();
 		return listaDeItrs;	
 	}
+	public static List<Itr> getListaDeItrsValidas(){
+		List<Itr> listaDeItrs = ServiceItr.listarTodasLasItrValidas();
+		return listaDeItrs;	
+	}
+	public static List<Itr> getListaDeItrsNoValidas(){
+		List<Itr> listaDeItrs = ServiceItr.listarTodasLasItrNoValidas();
+		return listaDeItrs;	
+	}
 	
 	public static List<Estado> getListaDeEstados() {
 		List<Estado> listaDeEstados = ServiceEstado.listarEstados();

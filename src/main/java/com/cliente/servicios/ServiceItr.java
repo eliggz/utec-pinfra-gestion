@@ -82,4 +82,22 @@ public static List<Itr> listarTodasLasItr() {
 		return null;
 	}
 }
+public static List<Itr> listarTodasLasItrValidas() {
+	try {
+		var itrBean = getService();
+		return itrBean.listarItrValidadas() ;
+	} catch (Exception e) {
+		return null;
+	}
+}
+public static List<Itr> listarTodasLasItrNoValidas() {
+	try {
+		var itrBean = getService();
+		return itrBean.listarItrNoValidadas() ;
+	} catch (Exception e) {
+		return null;
+	}
+}
+
+
 }
