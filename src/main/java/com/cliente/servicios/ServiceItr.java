@@ -32,6 +32,14 @@ public static Itr crearItr(Itr itr) {
 		return null;
 	}
 }
+public static Itr actualizarItr(Itr itr) {
+	try {
+		var itrBean = getService();
+		return itrBean.actualizarItr(itr);
+	} catch (Exception e) {
+		return null;
+	}
+}
 
 public static Itr eliminarItr(Itr itr) {
 	try {

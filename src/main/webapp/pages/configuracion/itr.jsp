@@ -46,10 +46,10 @@ request.getSession().removeAttribute("errorMensaje");
 			<tbody>
 
 				<%
-	List<Itr> listaITR = Fabrica.getListaDeItrs();
-        for (Itr itr : listaITR) {
-        	System.out.println(itr.getNombre());
-    %>
+				List<Itr> listaITR = Fabrica.getListaDeItrs();
+				for (Itr itr : listaITR) {
+					System.out.println(itr.getNombre());
+				%>
 				<tr>
 					<td><%=itr.getIdItr()%></td>
 					<td><%=itr.getNombre()%></td>
@@ -57,29 +57,32 @@ request.getSession().removeAttribute("errorMensaje");
 					<td>
 						<button class="btn-delete">Eliminar</button>
 						<button class="btn-edit"
-							onclick="mostrarFormularioEdicion('<%= itr.getIdItr() %>')">Modificar</button>
+							onclick="mostrarFormularioEdicion('<%=itr.getIdItr()%>')">Modificar</button>
 					</td>
 				</tr>
 				<!-- Formulario de edición oculto por defecto -->
-				<tr id="formEditarItr_<%= itr.getIdItr() %>" style="display: none;">
+				<tr id="formEditarItr_<%=itr.getIdItr()%>" style="display: none;">
 					<td colspan="4">
 						<!-- Generar el formulario de edición de la Itr -->
 						<form action="/Proyecto-PInfra/SvItrModificar" method="post">
-							<input type="hidden" name="id" value="<%= itr.getIdItr() %>">
-							<label for="editNombre_<%= itr.getIdItr() %>">Nombre:</label> <input
-								type="text" id="editNombre_<%= itr.getIdItr() %>" name="nombre"
-								value="<%= itr.getNombre() %>"> <label
-								for="editDepartamento_<%= itr.getIdItr() %>">Departamento:</label>
-							<input type="text" id="editDepartamento_<%= itr.getIdItr() %>"
-								name="departamento" value="<%= itr.getDepartamento() %>">
+							<input type="hidden" name="id" value="<%=itr.getIdItr()%>">
+							<label for="editNombre_<%=itr.getIdItr()%>">Nombre:</label> <input
+								type="text" id="editNombre_<%=itr.getIdItr()%>" name="nombre"
+								value="<%=itr.getNombre()%>"> <label
+								for="editDepartamento_<%=itr.getIdItr()%>">Departamento:</label>
+							<input type="text" id="editDepartamento_<%=itr.getIdItr()%>"
+								name="departamento" value="<%=itr.getDepartamento()%>">
 							<!-- Otros campos de la Itr -->
 							<button type="submit">Guardar Cambios</button>
-						</form>
+						</form> 
+						
+						<% if (request.getSession().getAttribute("errorMensaje") != null)%> 
+						<span><%=request.getSession().getAttribute("errorMensaje")%></span>
+						<%
+						}
+						%>
 					</td>
 				</tr>
-				<% 
-    } 
-%>
 			</tbody>
 		</table>
 
@@ -98,20 +101,19 @@ request.getSession().removeAttribute("errorMensaje");
 		</div>
 	</div>
 	<script>
-    function mostrarFormulario() {
-        document.getElementById('formularioAgregar').style.display = 'block';
-    }
+		function mostrarFormulario() {
+			document.getElementById('formularioAgregar').style.display = 'block';
+		}
 
-    function ocultarFormulario() {
-        document.getElementById('formularioAgregar').style.display = 'none';
-    }
+		function ocultarFormulario() {
+			document.getElementById('formularioAgregar').style.display = 'none';
+		}
 
-    function mostrarFormularioEdicion(id) {
-        var form = document.getElementById('formEditarItr_' + id);
-        form.style.display = (form.style.display === 'none') ? 'table-row' : 'none';
-    }
-
-    
-</script>
+		function mostrarFormularioEdicion(id) {
+			var form = document.getElementById('formEditarItr_' + id);
+			form.style.display = (form.style.display === 'none') ? 'table-row'
+					: 'none';
+		}
+	</script>
 </body>
 </html>

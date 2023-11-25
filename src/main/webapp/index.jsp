@@ -18,8 +18,8 @@ request.getSession().removeAttribute("errorMensaje");
 		<nav>
 			<ul>
 				
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Iniciar
-						sesión</a></li>
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Iniciar sesión</a></li>
+				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Gestión de Usuarios</a></li>
 				<li><a href="/Proyecto-PInfra/pages/registro/registro.jsp">Registrarme</a></li>
 
 		<%-- 		<li>
