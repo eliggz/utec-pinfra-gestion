@@ -95,15 +95,15 @@ form button[type="submit"] {
 }
 
 /* Definición de la animación */
-/*@keyframes moverPikachu {
+@keyframes moverPikachu {
     0% {
-        left: 0;  Posición inicial a la izquierda 
+        left: 0;  /*Posición inicial a la izquierda */
     }
     50% {
-        left: calc(100% - 300px);  Posición en la mitad del contenedor 
+        left: calc(100% - 300px);  /*Posición en la mitad del contenedor */
     }
     100% {
-        left: 0;  Vuelve a la posición inicial 
+        left: 0;  /*Vuelve a la posición inicial */
     }
-}*/
+}
 
