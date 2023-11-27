@@ -9,6 +9,8 @@
 	pageEncoding="UTF-8"%>
 <%
     request.getSession().removeAttribute("errorMensaje");
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -17,15 +19,6 @@
 <title>Proyecto PInfra</title>
 <link rel="stylesheet" type="text/css"
 	href="/Proyecto-PInfra/pages/configuracion/styleITR.css">
-<script>
-        function mostrarFormularioEdicion(id) {
-            var form = document.getElementById('formEditarUsuario_' + id);
-            form.style.display = (form.style.display === 'none') ? 'table-row' : 'none';
-        }
-        function ocultarFormulario(idUsuario) {
-            document.getElementById('formEditarUsuario_' + idUsuario).style.display = 'none';
-        }
-    </script>
 </head>
 <body>
 	<header>
@@ -46,8 +39,11 @@
 
 	<div class="container">
 		<h1>Lista de Usuarios</h1>
+		 <button onclick="filtrarUsuarios('VALIDADO')">Mostrar Validados</button>
+        <button onclick="filtrarUsuarios('NO VALIDADO')">Mostrar No Validados</button>
+         <button onclick="mostrarTodosUsuarios()">Mostrar Todos</button>
 		<!-- Tabla para mostrar los datos -->
-		<table>
+		<table id="tablaUsuarios">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -59,12 +55,13 @@
 					<th>Acciones</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tbodyUsuarios">
 				<%
                     List<Usuario> listaUsuarios = Fabrica.getListaDeUsuarios();
                     for (Usuario usu : listaUsuarios) {
+                    	
                 %>
-				<tr>
+				 <tr class="filaUsuario">
 					<td><%=usu.getIdUsuario()%></td>
 					<td><%=usu.getNombre1()%></td>
 					<td><%=usu.getApellido1()%></td>
@@ -116,5 +113,36 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<script>
+        function mostrarFormularioEdicion(id) {
+            var form = document.getElementById('formEditarUsuario_' + id);
+            form.style.display = (form.style.display === 'none') ? 'table-row' : 'none';
+        }
+        function ocultarFormulario(idUsuario) {
+            document.getElementById('formEditarUsuario_' + idUsuario).style.display = 'none';
+        }
+
+        function mostrarTodosUsuarios() {
+            var filasUsuarios = document.getElementsByClassName('filaUsuario');
+
+            for (var i = 0; i < filasUsuarios.length; i++) {
+                filasUsuarios[i].style.display = 'table-row';
+            }
+        }
+
+        function filtrarUsuarios(estado) {
+            var filasUsuarios = document.getElementsByClassName('filaUsuario');
+
+            for (var i = 0; i < filasUsuarios.length; i++) {
+                var estadoUsuario = filasUsuarios[i].querySelector('td:nth-child(6)').innerText;
+                if (estado === 'TODOS' || estadoUsuario === estado) {
+                    filasUsuarios[i].style.display = 'table-row';
+                } else {
+                    filasUsuarios[i].style.display = 'none';
+                }
+            }
+            }
+    </script>
 </body>
 </html>

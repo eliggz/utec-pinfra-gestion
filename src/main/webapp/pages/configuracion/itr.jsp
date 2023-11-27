@@ -36,7 +36,10 @@ request.getSession().removeAttribute("errorMensaje");
 
 	<div class="container">
 		<h1>Lista de ITRs</h1>	<!-- Tabla para mostrar los datos -->
-		<table>
+		<button onclick="mostrarTodosITRs()">Mostrar Todos</button>
+        <button onclick="filtrarITRs('VALIDADO')">Mostrar Validados</button>
+        <button onclick="filtrarITRs('NO VALIDADO')">Mostrar No Validados</button>
+		<table id="tablaITRs"> 
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -46,14 +49,14 @@ request.getSession().removeAttribute("errorMensaje");
 					<th>Acciones</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tbodyITRs">
 
 				<%
 				List<Itr> listaITR = Fabrica.getListaDeItrs();
 				for (Itr itr : listaITR) {
 					System.out.println(itr.getNombre());
 				%>
-				<tr>
+				<tr class="filaITR">
 					<td><%=itr.getIdItr()%></td>
 					<td><%=itr.getNombre()%></td>
 					<td><%=itr.getDepartamento()%></td>
@@ -127,6 +130,27 @@ request.getSession().removeAttribute("errorMensaje");
 			form.style.display = (form.style.display === 'none') ? 'table-row'
 					: 'none';
 		}
+
+			 function mostrarTodosITRs() {
+			        var filasITRs = document.getElementsByClassName('filaITR');
+
+			        for (var i = 0; i < filasITRs.length; i++) {
+			            filasITRs[i].style.display = 'table-row';
+			        }
+			    }
+
+			    function filtrarITRs(estado) {
+			        var filasITRs = document.getElementsByClassName('filaITR');
+
+			        for (var i = 0; i < filasITRs.length; i++) {
+			            var estadoITR = filasITRs[i].getElementsByTagName('td')[3].innerText.trim();
+			            if (estado === 'TODOS' || estadoITR === estado) {
+			                filasITRs[i].style.display = 'table-row';
+			            } else {
+			                filasITRs[i].style.display = 'none';
+			            }
+			        }
+			    }
 	</script>
 </body>
 </html>
