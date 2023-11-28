@@ -28,16 +28,16 @@
 
 			<table>
 				<tr>
-					<td>Primer Nombre</td>
-					<td><input type="text" name="nombre1" id="nombre1" /></td>
+					 <td>Primer Nombre</td>
+    				<td><input type="text" name="nombre1" id="nombre1" oninput="actualizarCorreoEstudiante()" /></td>
 				</tr>
 				<tr>
 					<td>Segundo Nombre</td>
 					<td><input type="text" name="nombre2" /></td>
 				</tr>
 				<tr>
-					<td>Primer Apellido</td>
-					<td><input type="text" name="apellido1" id="apellido1" /></td>
+					 <td>Primer Apellido</td>
+    				<td><input type="text" name="apellido1" id="apellido1" oninput="actualizarCorreoEstudiante()" /></td>
 				</tr>
 				<tr>
 					<td>Segundo Apellido</td>
@@ -52,12 +52,20 @@
 					<td><input type="date" name="fechaNacimiento" /></td>
 				</tr>
 				<tr>
+
+				<tr>
 					<td>Mail institucional</td>
-					<td><input type="text" id="mailInstitucional" readonly /></td>
-				</tr>
+				    <td><input type="text" name="mailInstitucional" id="mailInstitucional" readonly /></td>
+				</tr></tr>
+				
+				<tr>
+					<td>Mail personal</td>
+					<td><input type="text" name="mailPersonal" /></td></tr>
+				
+				
 				<tr>
 					<td>Nombre de usuario</td>
-					<td><input type="text" id="nombreUsuario" /></td>
+					<td><input type="text" name="nombreUsuario" /></td>
 				</tr>
 
 				<tr>
@@ -142,7 +150,7 @@
 						id="generacionSelect" placeholder="Escriba aquí su generación..."
 						oninput="validarNumero(event)"></td>
 				</tr>
-
+				
 				<tr>
 					<td colspan="2"><input type="submit" value="Registrar" /></td>
 				</tr>
@@ -172,125 +180,83 @@
      "Treinta y Tres": ["Treinta y Tres", "Santa Clara", "Rincón de Valentines", "Vergara"]
  };
 
- // Función para actualizar las opciones del select de ciudades
- function actualizarCiudades() {
-     const departamentoSelect = document.getElementById("departamentoSelect");
-     const ciudadSelect = document.getElementById("ciudadSelect");
-     const departamentoSeleccionado = departamentoSelect.value;
+    function actualizarCiudades() {
+        const departamentoSelect = document.getElementById("departamentoSelect");
+        const ciudadSelect = document.getElementById("ciudadSelect");
+        const departamentoSeleccionado = departamentoSelect.value;
 
-     ciudadSelect.innerHTML = ""; // Limpiar las opciones actuales
+        ciudadSelect.innerHTML = "";
 
-     const ciudades = ciudadesPorDepartamento[departamentoSeleccionado];
+        const ciudades = ciudadesPorDepartamento[departamentoSeleccionado];
 
-     if (ciudades) {
-         ciudades.forEach((ciudad) => {
-             const opcion = document.createElement("option");
-             opcion.text = ciudad;
-             opcion.value = ciudad;
-             ciudadSelect.appendChild(opcion);
-         });
-     }
- }
-
- const departamentoSelect = document.getElementById("departamentoSelect");
- departamentoSelect.addEventListener("change", actualizarCiudades);
-
- actualizarCiudades();
-
- // Definir los tipos de Rol
-function actualizarCampos() {
-    var rolSelect = document.getElementById("rolSelect");
-    var areaRow = document.getElementById("areaRow");
-    var rolTutorRow = document.getElementById("rolTutorRow");
-    var generacionRow = document.getElementById("generacionRow"); // Agregar paréntesis faltante después de document.getElementById
-
-    // Mostrar u ocultar campos según el rol seleccionado
-    if (rolSelect.value === "Tutor") {
-        areaRow.style.display = "table-row";
-        rolTutorRow.style.display = "table-row";
-    } else {
-        areaRow.style.display = "none";
-        rolTutorRow.style.display = "none";
-    }
-
-    if (rolSelect.value === "Estudiante") {
-        generacionRow.style.display = "table-row";
-    } else {
-        generacionRow.style.display = "none";
-    } 
-}
-
-function validarNumero(event) {
-    const input = event.target;
-    const valor = input.value.trim();
-
-    if (!valor.match(/^\d+$/)) {
-        input.value = valor.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un número
-    }
-}
-function generarMailInstitucional() {
-    // Obtener los valores de nombre1 y apellido1
-    const nombre1 = document.getElementsByName("nombre1")[0].value.trim();
-    const apellido1 = document.getElementsByName("apellido1")[0].value.trim();
-
-    // Construir el mail institucional y actualizar el campo
-    const mailInstitucional = `${nombre1}.${apellido1}@estudiantes.utec.edu.uy`;
-    document.getElementById("mailInstitucional").value = mailInstitucional;
-}
-
-}
-function obtenerMailInstitucional() {
-    const nombre1 = document.getElementById("nombre1");
-    const apellido1 = document.getElementById("apellido1");
-    const rol = document.getElementById("rolSelect").value;
-
-    let mailInstitucional;
-
-    if (nombre1 !== "" && apellido1 !== "") {
-        if (rol === "Estudiante") {
-            mailInstitucional = `${nombre1}.${apellido1}@estudiantes.utec.edu.uy`;
-        } else {
-            mailInstitucional = `${nombre1}.${apellido1}@utec.edu.uy`;
+        if (ciudades) {
+            ciudades.forEach((ciudad) => {
+                const opcion = document.createElement("option");
+                opcion.text = ciudad;
+                opcion.value = ciudad;
+                ciudadSelect.appendChild(opcion);
+            });
         }
     }
 
-    return mailInstitucional;
-}
+    const departamentoSelect = document.getElementById("departamentoSelect");
+    departamentoSelect.addEventListener("change", actualizarCiudades);
 
-// Función para obtener el nombre de usuario según los campos nombre1 y apellido1
-function obtenerNombreUsuario() {
-    const nombre1 = document.getElementById("nombre1");
-    const apellido1 = document.getElementById("apellido1");
+    actualizarCiudades();
 
-    let nombreUsuario = "";
+    function actualizarCampos() {
+        const rolSelect = document.getElementById("rolSelect");
+        const areaRow = document.getElementById("areaRow");
+        const rolTutorRow = document.getElementById("rolTutorRow");
+        const generacionRow = document.getElementById("generacionRow");
+        const mailInstitucionalInput = document.getElementById("mailInstitucional");
 
-    if (nombre1 !== "" && apellido1 !== "") {
-        nombreUsuario = `${nombre1}.${apellido1}`;
+        if (rolSelect.value === "Tutor") {
+            areaRow.style.display = "table-row";
+            rolTutorRow.style.display = "table-row";
+        } else {
+            areaRow.style.display = "none";
+            rolTutorRow.style.display = "none";
+        }
+
+        if (rolSelect.value === "Estudiante") {
+            generacionRow.style.display = "table-row";
+            actualizarCorreoEstudiante();
+        } else {
+            generacionRow.style.display = "none";
+            actualizarCorreoEstudiante();
+        }
     }
 
-    return nombreUsuario;
-}
+    function generarCorreoEstudiante(nombre, apellido) {
+        return nombre.toLowerCase() + "." + apellido.toLowerCase() + "@estudiantes.utec.edu.uy";
+    }
 
-// Actualizar el campo "Mail institucional" y "Nombre de usuario" cuando se cambie el valor en los campos nombre1 y apellido1 o se seleccione otro rol
-function actualizarCamposUsuario() {
-    const mailInstitucionalInput = document.getElementById("mailInstitucional");
-    const nombreUsuarioInput = document.getElementById("nombreUsuario");
+    function generarCorreoOtrosRoles() {
+        const nombre1 = document.getElementById("nombre1").value;
+        const apellido1 = document.getElementById("apellido1").value;
+        return nombre1.toLowerCase() + "." + apellido1.toLowerCase() + "@utec.edu.uy";
+    }
 
-    mailInstitucionalInput.value = obtenerMailInstitucional();
-    nombreUsuarioInput.value = obtenerNombreUsuario();
-}
+    function validarNumero(event) {
+        const input = event.target;
+        const valor = input.value.trim();
 
-// Agregar eventos de cambio para campos que afectan a los campos "Mail institucional" y "Nombre de usuario"
-const nombre1Input = document.getElementById("nombre1");
-const apellido1Input = document.getElementById("apellido1");
-const rolSelect = document.getElementById("rolSelect");
+        if (!valor.match(/^\d+$/)) {
+            input.value = valor.replace(/\D/g, '');
+        }
+    }
 
-nombre1Input.addEventListener("input", actualizarCamposUsuario);
-apellido1Input.addEventListener("input", actualizarCamposUsuario);
-rolSelect.addEventListener("change", actualizarCamposUsuario);
+    function actualizarCorreoEstudiante() {
+        const nombre1 = document.getElementById("nombre1").value;
+        const apellido1 = document.getElementById("apellido1").value;
+        const mailInstitucionalInput = document.getElementById("mailInstitucional");
 
-// Llamar a la función para inicializar los valores
-actualizarCamposUsuario();
+        mailInstitucionalInput.value = (rolSelect.value === "Estudiante")
+            ? generarCorreoEstudiante(nombre1, apellido1)
+            : generarCorreoOtrosRoles();
+    }
 </script>
+
 </body>
 </html>
