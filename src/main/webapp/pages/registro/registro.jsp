@@ -64,8 +64,8 @@
 				
 				
 				<tr>
-					<td>Nombre de usuario</td>
-					<td><input type="text" name="nombreUsuario" /></td>
+					 <td>Nombre de usuario</td>
+    			<td><input type="text" name="nombreUsuario" id="nombreUsuario" readonly /></td>
 				</tr>
 
 				<tr>
@@ -251,10 +251,17 @@
         const nombre1 = document.getElementById("nombre1").value;
         const apellido1 = document.getElementById("apellido1").value;
         const mailInstitucionalInput = document.getElementById("mailInstitucional");
+        const nombreUsuarioInput = document.getElementById("nombreUsuario");
 
-        mailInstitucionalInput.value = (rolSelect.value === "Estudiante")
+        const mailInstitucional = (rolSelect.value === "Estudiante")
             ? generarCorreoEstudiante(nombre1, apellido1)
             : generarCorreoOtrosRoles();
+
+        mailInstitucionalInput.value = mailInstitucional;
+        nombreUsuarioInput.value = generarNombreUsuario(nombre1, apellido1);
+    }
+    function generarNombreUsuario(nombre, apellido) {
+        return nombre.toLowerCase() + "." + apellido.toLowerCase();
     }
 </script>
 
