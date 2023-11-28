@@ -29,7 +29,7 @@
 			<table>
 				<tr>
 					<td>Primer Nombre</td>
-					<td><input type="text" name="nombre1" /></td>
+					<td><input type="text" name="nombre1" id="nombre1" /></td>
 				</tr>
 				<tr>
 					<td>Segundo Nombre</td>
@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 					<td>Primer Apellido</td>
-					<td><input type="text" name="apellido1" /></td>
+					<td><input type="text" name="apellido1" id="apellido1" /></td>
 				</tr>
 				<tr>
 					<td>Segundo Apellido</td>
@@ -53,15 +53,11 @@
 				</tr>
 				<tr>
 					<td>Mail institucional</td>
-					<td><input type="text" name="mailInstitucional" /></td>
-				</tr>
-				<tr>
-					<td>Mail personal</td>
-					<td><input type="text" name="mailPersonal" /></td>
+					<td><input type="text" id="mailInstitucional" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nombre de usuario</td>
-					<td><input type="text" name="nombreUsuario" /></td>
+					<td><input type="text" id="nombreUsuario" /></td>
 				</tr>
 
 				<tr>
@@ -142,9 +138,11 @@
 				</tr>
 				<tr id="generacionRow" style="display: none;">
 					<td>Generación</td>
-					<td><input type="number" name="generacion" id="generacionSelect" placeholder="Escriba aquí su generación..." oninput="validarNumero(event)"></td>
+					<td><input type="number" name="generacion"
+						id="generacionSelect" placeholder="Escriba aquí su generación..."
+						oninput="validarNumero(event)"></td>
 				</tr>
-				
+
 				<tr>
 					<td colspan="2"><input type="submit" value="Registrar" /></td>
 				</tr>
@@ -230,6 +228,69 @@ function validarNumero(event) {
         input.value = valor.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un número
     }
 }
+function generarMailInstitucional() {
+    // Obtener los valores de nombre1 y apellido1
+    const nombre1 = document.getElementsByName("nombre1")[0].value.trim();
+    const apellido1 = document.getElementsByName("apellido1")[0].value.trim();
+
+    // Construir el mail institucional y actualizar el campo
+    const mailInstitucional = `${nombre1}.${apellido1}@estudiantes.utec.edu.uy`;
+    document.getElementById("mailInstitucional").value = mailInstitucional;
+}
+
+}
+function obtenerMailInstitucional() {
+    const nombre1 = document.getElementById("nombre1");
+    const apellido1 = document.getElementById("apellido1");
+    const rol = document.getElementById("rolSelect").value;
+
+    let mailInstitucional;
+
+    if (nombre1 !== "" && apellido1 !== "") {
+        if (rol === "Estudiante") {
+            mailInstitucional = `${nombre1}.${apellido1}@estudiantes.utec.edu.uy`;
+        } else {
+            mailInstitucional = `${nombre1}.${apellido1}@utec.edu.uy`;
+        }
+    }
+
+    return mailInstitucional;
+}
+
+// Función para obtener el nombre de usuario según los campos nombre1 y apellido1
+function obtenerNombreUsuario() {
+    const nombre1 = document.getElementById("nombre1");
+    const apellido1 = document.getElementById("apellido1");
+
+    let nombreUsuario = "";
+
+    if (nombre1 !== "" && apellido1 !== "") {
+        nombreUsuario = `${nombre1}.${apellido1}`;
+    }
+
+    return nombreUsuario;
+}
+
+// Actualizar el campo "Mail institucional" y "Nombre de usuario" cuando se cambie el valor en los campos nombre1 y apellido1 o se seleccione otro rol
+function actualizarCamposUsuario() {
+    const mailInstitucionalInput = document.getElementById("mailInstitucional");
+    const nombreUsuarioInput = document.getElementById("nombreUsuario");
+
+    mailInstitucionalInput.value = obtenerMailInstitucional();
+    nombreUsuarioInput.value = obtenerNombreUsuario();
+}
+
+// Agregar eventos de cambio para campos que afectan a los campos "Mail institucional" y "Nombre de usuario"
+const nombre1Input = document.getElementById("nombre1");
+const apellido1Input = document.getElementById("apellido1");
+const rolSelect = document.getElementById("rolSelect");
+
+nombre1Input.addEventListener("input", actualizarCamposUsuario);
+apellido1Input.addEventListener("input", actualizarCamposUsuario);
+rolSelect.addEventListener("change", actualizarCamposUsuario);
+
+// Llamar a la función para inicializar los valores
+actualizarCamposUsuario();
 </script>
 </body>
 </html>

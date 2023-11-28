@@ -40,7 +40,8 @@
 	<div class="container">
 		<h1>Lista de Usuarios</h1>
 		 <button onclick="filtrarUsuarios('VALIDADO')">Mostrar Validados</button>
-        <button onclick="filtrarUsuarios('NO VALIDADO')">Mostrar No Validados</button>
+         <button onclick="filtrarUsuarios('NO VALIDADO')">Mostrar No Validados</button>
+         <button onclick="filtrarUsuarios('ELIMINADO')">Mostrar Eliminados</button>
          <button onclick="mostrarTodosUsuarios()">Mostrar Todos</button>
 		<!-- Tabla para mostrar los datos -->
 		<table id="tablaUsuarios">
@@ -98,7 +99,7 @@
 							<option value="<%=aux.getIdEstado()%>"> <%=aux.getDescripcion()%> </option>
 								<% } %>
 							</select> 
-							<!-- Otros campos de la Itr -->
+							
 							<button type="submit">Guardar Cambios</button>
 							<button type="button" onclick="ocultarFormulario('<%=usu.getIdUsuario()%>')">Cancelar</button>
 
@@ -143,6 +144,18 @@
                 }
             }
             }
+        function filtrarUsuarios(estado) {
+            var filasUsuarios = document.getElementsByClassName('filaUsuario');
+
+            for (var i = 0; i < filasUsuarios.length; i++) {
+                var estadoUsuario = filasUsuarios[i].querySelector('td:nth-child(6)').innerText;
+                if (estado === 'TODOS' || estadoUsuario === estado) {
+                    filasUsuarios[i].style.display = 'table-row';
+                } else {
+                    filasUsuarios[i].style.display = 'none';
+                }
+            }
+        }
     </script>
 </body>
 </html>
