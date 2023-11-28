@@ -115,20 +115,6 @@ public class UsuarioBean implements UsuarioBeanRemote {
 		return Usuario;
 	}
 
-	public List<Usuario> buscarEmpleados() throws PersistenciaException {
-		try {
-
-		String query= 	"Select e from Usuario e";
-		List<Usuario> resultList = (List<Usuario>) em.createQuery(query,Usuario.class)
-							 .getResultList();
-		return  resultList;
-		}catch(PersistenceException e) {
-			throw new PersistenciaException("No se pudo hacer la consulta." + e.getMessage(),e);
-		}
-
-	}
-
-
 	@Override
 	public List<Usuario> seleccionarUsuarios(String criterioNombre,
 			String criterioDepartamento, Boolean criterioActivo) throws PersistenciaException {

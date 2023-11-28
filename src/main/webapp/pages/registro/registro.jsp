@@ -23,12 +23,20 @@
 
 	<main>
 		<h1>Registro de usuario</h1>
+		
+		<%
+		if (request.getSession().getAttribute("errorMensaje") != null) {
+		%>
+		<span><%=request.getSession().getAttribute("errorMensaje")%></span>
+		<%
+		}
+		%>
 
 		<form action="/Proyecto-PInfra/SvUsuarioRegistro" method="POST">
 
 			<table>
 				<tr>
-					 <td>Primer Nombre</td>
+					 <td>Primer Nombre *</td>
     				<td><input type="text" name="nombre1" id="nombre1" oninput="actualizarCorreoEstudiante()" /></td>
 				</tr>
 				<tr>
@@ -36,7 +44,7 @@
 					<td><input type="text" name="nombre2" /></td>
 				</tr>
 				<tr>
-					 <td>Primer Apellido</td>
+					 <td>Primer Apellido *</td>
     				<td><input type="text" name="apellido1" id="apellido1" oninput="actualizarCorreoEstudiante()" /></td>
 				</tr>
 				<tr>
@@ -44,11 +52,11 @@
 					<td><input type="text" name="apellido2" /></td>
 				</tr>
 				<tr>
-					<td>Documento</td>
+					<td>Documento *</td>
 					<td><input type="text" name="documento" /></td>
 				</tr>
 				<tr>
-					<td>Fecha de nacimiento</td>
+					<td>Fecha de nacimiento *</td>
 					<td><input type="date" name="fechaNacimiento" /></td>
 				</tr>
 				<tr>
@@ -59,7 +67,7 @@
 				</tr></tr>
 				
 				<tr>
-					<td>Mail personal</td>
+					<td>Mail personal *</td>
 					<td><input type="text" name="mailPersonal" /></td></tr>
 				
 				
@@ -69,15 +77,18 @@
 				</tr>
 
 				<tr>
-					<td>Contraseña</td>
-					<td><input type="password" name="password" /></td>
+					<td>Contraseña *</td>
+					 <td>
+				        <input type="password" name="password" id="password" />
+				        <button type="button" onclick="togglePasswordVisibility()">Ver Contraseña</button>
+				    </td>
 				</tr>
 				<tr>
 					<td>Teléfono</td>
 					<td><input type="text" name="telefono" /></td>
 				</tr>
 				<tr>
-					<td>Departamento</td>
+					<td>Departamento *</td>
 					<td><select name="departamento" id="departamentoSelect">
 							<option value="" selected disabled>Seleccione
 								Departamento</option>
@@ -104,7 +115,7 @@
 
 				</tr>
 				<tr>
-					<td>Ciudad</td>
+					<td>Ciudad *</td>
 					<td><select name="ciudad" id="ciudadSelect">
 							<option value="" selected disabled>Seleccione Ciudad</option>
 					</select></td>
@@ -114,6 +125,7 @@
 				<tr>
 					<td>Itr</td>
 					<td><select name="itr">
+							<option value="" selected disabled>Seleccione Itr</option>
 							<option value="Minas">Minas</option>
 							<option value="Melo">Melo</option>
 							<option value="Durazno">Durazno</option>
@@ -121,31 +133,34 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Soy un...</td>
+					<td>Seleccione Rol *</td>
 					<td><select name="rol" id="rolSelect"
 						onchange="actualizarCampos()">
+							<option value="" selected disabled>Seleccione Rol</option>
 							<option value="Analista">Analista</option>
 							<option value="Tutor">Tutor</option>
 							<option value="Estudiante">Estudiante</option>
 					</select></td>
 				</tr>
 				<tr id="areaRow" style="display: none;">
-					<td>Área</td>
+					<td>Área *</td>
 					<td><select name="area" id="areaSelect">
+							<option value="" selected disabled>Seleccione Area</option>
 							<option value="Infraestructura">Infraestructura</option>
 							<option value="Testing">Testing</option>
 							<option value="Programacion">Programacion</option>
 					</select></td>
 				</tr>
 				<tr id="rolTutorRow" style="display: none;">
-					<td>Rol</td>
+					<td>Rol *</td>
 					<td><select name="rolTutor" id="rolTutorSelect">
+							<option value="" selected disabled>Seleccione Rol</option>
 							<option value="Tutor">Tutor</option>
 							<option value="Encargado">Encargado</option>
 					</select></td>
 				</tr>
 				<tr id="generacionRow" style="display: none;">
-					<td>Generación</td>
+					<td>Generación *</td>
 					<td><input type="number" name="generacion"
 						id="generacionSelect" placeholder="Escriba aquí su generación..."
 						oninput="validarNumero(event)"></td>
@@ -262,6 +277,19 @@
     }
     function generarNombreUsuario(nombre, apellido) {
         return nombre.toLowerCase() + "." + apellido.toLowerCase();
+    }
+
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("password");
+        const buttonText = document.querySelector("button[onclick='togglePasswordVisibility()']");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            buttonText.textContent = "Ocultar Contraseña";
+        } else {
+            passwordInput.type = "password";
+            buttonText.textContent = "Ver Contraseña";
+        }
     }
 </script>
 
