@@ -32,7 +32,7 @@ public class ServiceUsuario {
 			
 			
 			for (var aux : usuarioBean.listarUsuarios()) {
-				if (aux.getNombreUsuario().equals(nombreUsuario) && aux.getPassword().equals(clave)) {
+				if (aux.getNombreUsuario().equals(nombreUsuario) && aux.getPassword().equals(clave) && aux.getEstado().getIdEstado()== 2l){					
 					usuarioEncontrado = aux;
 					break;
 				}

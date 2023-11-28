@@ -53,7 +53,7 @@
 				</tr>
 				<tr>
 					<td>Documento *</td>
-					<td><input type="text" name="documento" /></td>
+					<td><input type="text" name="documento" oninput="validarNumero(event)"/></td>
 				</tr>
 				<tr>
 					<td>Fecha de nacimiento *</td>
@@ -85,7 +85,7 @@
 				</tr>
 				<tr>
 					<td>Teléfono</td>
-					<td><input type="text" name="telefono" /></td>
+					<td><input type="text" name="telefono" oninput="validarNumero(event)"/></td>
 				</tr>
 				<tr>
 					<td>Departamento *</td>

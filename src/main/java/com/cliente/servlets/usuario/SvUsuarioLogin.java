@@ -44,7 +44,7 @@ public class SvUsuarioLogin extends HttpServlet {
 		Usuario usuarioLogueado = ServiceUsuario.login(nombreUsuario, clave);
 
 		if (usuarioLogueado == null) {
-			request.getSession().setAttribute("errorMensaje", "El usuario no existe");
+			request.getSession().setAttribute("errorMensaje", "Datos de Usuario incorrectos o Usuario Sin Validar");
 			response.sendRedirect("/Proyecto-PInfra/pages/login/login.jsp");
 			return;
 		} 

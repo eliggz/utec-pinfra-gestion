@@ -95,15 +95,15 @@ public class SvUsuarioRegistro extends HttpServlet {
 		String rolString = request.getParameter("rol");
 		Rol rol = null;
 
-		if (rolString.equals("Analista")) {
+		if (rolString !=null && rolString.equals("Analista")) {
 			rol = ServiceRol.buscarRol(1l);
 			System.out.println("El rol encontrado: " + rol.getNombre()); // Verificar que se obtenga el rol
 																			// correctamente
 
-		} else if (rolString.equals("Tutor")) {
+		} else if (rolString !=null &&  rolString.equals("Tutor")) {
 			rol = ServiceRol.buscarRol(2l);
 
-		} else if (rolString.equals("Estudiante")) {
+		} else if (rolString !=null && rolString.equals("Estudiante")) {
 
 			rol = ServiceRol.buscarRol(3l);
 		} else {
@@ -114,7 +114,7 @@ public class SvUsuarioRegistro extends HttpServlet {
 		
 		// Validaciones
 		if (nombre1.isEmpty() || apellido1.isEmpty() || documento.isEmpty() || fechaNacimientoStr.isEmpty()
-		        || mailPersonal.isEmpty() || ciudad.isEmpty()) {
+		        || mailPersonal.isEmpty() || ciudad.isEmpty() || departamento.isEmpty() || itr == null || rolString.isEmpty())  {
 
 		    request.getSession().setAttribute("errorMensaje", "Todos los campos obligatorios deben ser completados");
 		    response.sendRedirect("/Proyecto-PInfra/pages/registro/registro.jsp");
