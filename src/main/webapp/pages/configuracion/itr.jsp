@@ -39,6 +39,7 @@ request.getSession().removeAttribute("errorMensaje");
 		<button onclick="mostrarTodosITRs()">Mostrar Todos</button>
         <button onclick="filtrarITRs('VALIDADO')">Mostrar Validados</button>
         <button onclick="filtrarITRs('NO VALIDADO')">Mostrar No Validados</button>
+        <button onclick="filtrarITRs('ELIMINADO')">Mostrar Eliminados</button>
 		<table id="tablaITRs"> 
 			<thead>
 				<tr>
@@ -54,18 +55,26 @@ request.getSession().removeAttribute("errorMensaje");
 				<%
 				List<Itr> listaITR = Fabrica.getListaDeItrs();
 				for (Itr itr : listaITR) {
-					System.out.println(itr.getNombre());
+					
+						
+					
 				%>
+				
+				<form  action="/Proyecto-PInfra/SvItrEliminar" method="POST">
 				<tr class="filaITR">
 					<td><%=itr.getIdItr()%></td>
 					<td><%=itr.getNombre()%></td>
 					<td><%=itr.getDepartamento()%></td>
 					<td><%=itr.getEstado().getDescripcion()%></td>
 					<td>
-						<button class="btn-delete">Eliminar</button>
+					<button name="id" value="<%=itr.getIdItr()%>" class="btn-delete">Eliminar</button>
+					</form>
 						<button class="btn-edit"
 							onclick="mostrarFormularioEdicion('<%=itr.getIdItr()%>')">Modificar</button>
 					</td>
+					<% if (request.getSession().getAttribute("errorMensaje") != null) { %>
+    <span><%= request.getSession().getAttribute("errorMensaje") %></span>
+		<% } %>
 				</tr>
 				<!-- Formulario de edición oculto por defecto -->
 				<tr id="formEditarItr_<%=itr.getIdItr()%>" style="display: none;">
@@ -79,24 +88,35 @@ request.getSession().removeAttribute("errorMensaje");
 								for="editDepartamento_<%=itr.getIdItr()%>">Departamento:</label>
 							<input type="text" id="editDepartamento_<%=itr.getIdItr()%>"
 								name="departamento" value="<%=itr.getDepartamento()%>">
-							   <select id="editEstado_<%= itr.getIdItr() %>" name="estado">
-                        <% 
-                        List<Estado> listaEstados = Fabrica.getListaDeEstados();
-                        for (Estado aux : listaEstados) {
-                        %>
-                        <option value="<%= aux.getIdEstado() %>" <%= (aux.getIdEstado() == itr.getEstado().getIdEstado()) ? "selected" : "" %>><%= aux.getDescripcion() %></option>
-                        <% } %>
+						<select id="editEstado_<%= itr.getIdItr() %>" name="estado">
+                    
+    					<%
+   						List<Estado> listaEstados = Fabrica.getListaDeEstados();
+
+    					// Filtrar la lista de estados para excluir el estado 'ELIMINADO'
+   						 List<Estado> estadosFiltrados = new ArrayList<>();
+    						for (Estado aux : listaEstados) {
+     						   if (!aux.getDescripcion().equalsIgnoreCase("ELIMINADO")) {
+           						 estadosFiltrados.add(aux);
+       					 		}
+    						}
+
+    					// Mostrar los estados filtrados en el select
+    						for (Estado estado : estadosFiltrados) {
+   					 	%>
+        			<option value="<%=estado.getIdEstado()%>"> <%=estado.getDescripcion()%> </option>
+    					<% } %>
+					
                     </select>
                     <!-- Otros campos de la Itr -->
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" onclick="ocultarFormulario('<%= itr.getIdItr() %>')">Cancelar</button>
                 </form>
 						
-						<% if (request.getSession().getAttribute("errorMensaje") != null)%> 
-						<span><%=request.getSession().getAttribute("errorMensaje")%></span>
-						<%
-						}
-						%>
+						<% if (request.getSession().getAttribute("errorMensaje") != null) { %>
+    <span><%= request.getSession().getAttribute("errorMensaje") %></span>
+		<% } }%>
+
 					</td>
 				</tr>
 			</tbody>
@@ -151,6 +171,9 @@ request.getSession().removeAttribute("errorMensaje");
 			            }
 			        }
 			    }
+			    
+			   
+
 	</script>
 </body>
 </html>

@@ -39,10 +39,11 @@
 
 	<div class="container">
 		<h1>Lista de Usuarios</h1>
+		<button onclick="mostrarTodosUsuarios()">Mostrar Todos</button>
 		 <button onclick="filtrarUsuarios('VALIDADO')">Mostrar Validados</button>
          <button onclick="filtrarUsuarios('NO VALIDADO')">Mostrar No Validados</button>
          <button onclick="filtrarUsuarios('ELIMINADO')">Mostrar Eliminados</button>
-         <button onclick="mostrarTodosUsuarios()">Mostrar Todos</button>
+         
 		<!-- Tabla para mostrar los datos -->
 		<table id="tablaUsuarios">
 			<thead>
@@ -60,8 +61,9 @@
 				<%
                     List<Usuario> listaUsuarios = Fabrica.getListaDeUsuarios();
                     for (Usuario usu : listaUsuarios) {
-                    	
+                    
                 %>
+                <form  action="/Proyecto-PInfra/SvUsuarioEliminar" method="POST">
 				 <tr class="filaUsuario">
 					<td><%=usu.getIdUsuario()%></td>
 					<td><%=usu.getNombre1()%></td>
@@ -70,11 +72,18 @@
 					<td><%=usu.getRol().getNombre()%></td>
 					<td><%=usu.getEstado().getDescripcion()%></td>
 					<td>
-						<button class="btn-delete">Eliminar</button>
+					
+						<button name="id" value="<%=usu.getIdUsuario()%>" class="btn-delete">Eliminar</button>
+						</form>
 						<button class="btn-edit"
 							onclick="mostrarFormularioEdicion('<%=usu.getIdUsuario()%>')">Modificar</button>
-					</td>
+					
+				</td>
+				<% if (request.getSession().getAttribute("errorMensaje") != null) { %>
+    <span><%= request.getSession().getAttribute("errorMensaje") %></span>
+		<% } %>
 				</tr>
+				
 				<!-- Formulario de edición oculto por defecto -->
 				<tr id="formEditarUsuario_<%=usu.getIdUsuario()%>"
 					style="display: none;">
@@ -92,13 +101,23 @@
 								for="editEstado_<%=usu.getIdUsuario()%>">Estado</label> 
 								
 								<select id="editEstado_<%=usu.getIdUsuario()%>" name="estado">
-								<% 
-       							 List<Estado> listaEstados = Fabrica.getListaDeEstados();
-        							for (Estado aux : listaEstados) {
-  							  %>
-							<option value="<%=aux.getIdEstado()%>"> <%=aux.getDescripcion()%> </option>
-								<% } %>
-							</select> 
+    <%
+    List<Estado> listaEstados = Fabrica.getListaDeEstados();
+
+    // Filtrar la lista de estados para excluir el estado 'ELIMINADO'
+    List<Estado> estadosFiltrados = new ArrayList<>();
+    for (Estado aux : listaEstados) {
+        if (!aux.getDescripcion().equalsIgnoreCase("ELIMINADO")) {
+            estadosFiltrados.add(aux);
+        }
+    }
+
+    // Mostrar los estados filtrados en el select
+    for (Estado estado : estadosFiltrados) {
+    %>
+        <option value="<%=estado.getIdEstado()%>"> <%=estado.getDescripcion()%> </option>
+    <% } %>
+</select>
 							
 							<button type="submit">Guardar Cambios</button>
 							<button type="button" onclick="ocultarFormulario('<%=usu.getIdUsuario()%>')">Cancelar</button>
@@ -143,19 +162,8 @@
                     filasUsuarios[i].style.display = 'none';
                 }
             }
-            }
-        function filtrarUsuarios(estado) {
-            var filasUsuarios = document.getElementsByClassName('filaUsuario');
-
-            for (var i = 0; i < filasUsuarios.length; i++) {
-                var estadoUsuario = filasUsuarios[i].querySelector('td:nth-child(6)').innerText;
-                if (estado === 'TODOS' || estadoUsuario === estado) {
-                    filasUsuarios[i].style.display = 'table-row';
-                } else {
-                    filasUsuarios[i].style.display = 'none';
-                }
-            }
         }
+        
     </script>
 </body>
 </html>
