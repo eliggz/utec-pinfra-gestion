@@ -33,6 +33,7 @@
 		%>
 
 		<form action="/Proyecto-PInfra/SvUsuarioRegistro" method="POST">
+		<p style="color: red;">Los campos marcados con (*) son obligatorios.</p>
 
 			<table>
 				<tr>
