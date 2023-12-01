@@ -80,30 +80,10 @@ form button[type="submit"] {
     cursor: pointer;
 }
 
-.pikachu-container {
-    position: relative;
-    width: 600px; /* Ancho del contenedor ajustado */
-    height: 200px; /* Alto del contenedor ajustado */
-    margin: 20px auto; /* Margen ajustado */
-    overflow: hidden; /* Oculta partes de la imagen que se salgan del contenedor */
-}
 
-.pikachu {
-    position: absolute;
-    width: 300px; /* Ancho de Pikachu ajustado */
-    animation: moverPikachu 4s infinite; /* Duración y repetición de la animación */
-}
-
-/* Definición de la animación */
-@keyframes moverPikachu {
-    0% {
-        left: 0; /* Posición inicial a la izquierda */
-    }
-    50% {
-        left: calc(100% - 300px); /* Posición en la mitad del contenedor */
-    }
-    100% {
-        left: 0; /* Vuelve a la posición inicial */
-    }
+ /* Estilos para el logo encima del banner */
+.imgLogo {
+  left: 20px; /* Ajusta la posición horizontal */
+  
 }
 
