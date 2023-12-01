@@ -3,6 +3,7 @@
 <%@page import="com.cliente.contexto.Fabrica"%>
 <%@page import="com.servidor.entidades.Itr"%>
 <%@page import="java.util.*"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -35,7 +36,20 @@
 
 	<div class="container">
 		<h1>Modificar Perfil</h1>
-		<form action="/Proyecto-Pinfra/SvUsuarioModificar" method="post">
+		<div style="text-align: center; margin-bottom: 10px">
+    <% if (request.getSession().getAttribute("exitoMensaje") != null) { %>
+        <span id="exitoMensaje" style="display: none; color: green;"><%= request.getSession().getAttribute("exitoMensaje") %></span>
+    <% } %>
+</div>
+
+	<div style="text-align: center; margin-bottom: 10px">
+    <% if (request.getSession().getAttribute("errorMensaje") != null) { %>
+        <span id="errorMensaje" style="display: none; color: red;"><%= request.getSession().getAttribute("errorMensaje") %></span>
+    <% } %>
+</div>
+
+
+		<form action="/Proyecto-PInfra/SvUsuarioPerfil" method="POST">
 
 			<label for="nombreUsuario">Nombre de Usuario:</label> <input
 				type="text" id="nombreUsuario" name="nombreUsuario"
@@ -52,26 +66,49 @@
 			<label for="nombre1">Primer Nombre:</label> <input type="text"
 				id="nombre1" name="nombre1"
 				placeholder="Ingrese su primer nombre..."
-				value="<%=usuarioLogueado.getNombre1()%>" required> <label
-				for="nombre2">Segundo Nombre:</label> <input type="text"
+				value="<%=usuarioLogueado.getNombre1()%>" required> 
+				
+				<label for="nombre2">Segundo Nombre:</label> <input type="text"
 				id="nombre2" name="nombre2"
 				placeholder="Ingrese su segundo nombre..."
 				<%if (usuarioLogueado.getNombre2() != null) {%>
-				value="<%=usuarioLogueado.getNombre2()%>" <%}%>> <label
-				for="apellido1">Primer Apellido:</label> <input type="text"
+				value="<%=usuarioLogueado.getNombre2()%>" <%}%>> 
+				
+				<label for="apellido1">Primer Apellido:</label> <input type="text"
 				id="apellido1" name="apellido1"
 				placeholder="Ingrese su primer apellido..."
-				value="<%=usuarioLogueado.getApellido1()%>"> <label
-				for="apellido2">Segundo Apellido:</label> <input type="text"
+				value="<%=usuarioLogueado.getApellido1()%>"> 
+				
+				<label for="apellido2">Segundo Apellido:</label> <input type="text"
 				id="apellido2" name="apellido2"
 				placeholder="Ingrese su segundo apellido..."
 				<%if (usuarioLogueado.getApellido2() != null) {%>
-				value="<%=usuarioLogueado.getApellido2()%>" <%}%>> <label
-				for="documento">Documento:</label> <input type="text" id="documento"
+				value="<%=usuarioLogueado.getApellido2()%>" <%}%>>
+				
+				 <label for="documento">Documento:</label> <input oninput="validarNumero(event)" type="text" id="documento"
 				name="documento" placeholder="Ingrese su documento..."
-				value="<%=usuarioLogueado.getDocumento()%>"> <label>Fecha
-				de nacimiento</label> <input type="date" name="fechaNacimiento" /> <br>
-			<label>Mail personal</label> <input type="text" name="mailPersonal" />
+				value="<%=usuarioLogueado.getDocumento()%>">
+				
+				<label for="fechaNacimiento">Fecha de nacimiento</label>
+				<input type="date" name="fechaNacimiento" <% if (usuarioLogueado.getFechaNacimiento() != null) {
+			    // Obtener la fecha de nacimiento del usuario
+			    Date fechaNacimiento = usuarioLogueado.getFechaNacimiento();
+			    // Crear un formateador para el nuevo formato "YYYY-MM-DD"
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			    // Formatear la fecha a una cadena en el formato correcto
+			    String fechaFormateada = dateFormat.format(fechaNacimiento);
+					%>
+    			value="<%= fechaFormateada %>"
+				<% } %> />
+			
+				<br>
+				
+			<label for="mailPersonal">Mail personal</label> <input <%if (usuarioLogueado.getMailPersonal() != null) {%>
+				value="<%=usuarioLogueado.getMailPersonal()%>" <%}%>  type="text" name="mailPersonal" />
+			
+			
+			<label for="telefono">Teléfono</label><input <%if (usuarioLogueado.getTelefono() != null) {%>
+				value="<%=usuarioLogueado.getTelefono()%>" <%}%> type="text" name="telefono" oninput="validarNumero(event)"/></td>
 
 
 			<!-- El campo de nombre de usuario no se debe editar en el perfil -->
@@ -94,6 +131,26 @@
 				passwordInput.type = "password";
 				buttonText.textContent = "Ver Contraseña";
 			}
+		}
+
+		function validarNumero(event) {
+	        const input = event.target;
+	        const valor = input.value.trim();
+
+	        if (!valor.match(/^\d+$/)) {
+	            input.value = valor.replace(/\D/g, '');
+	        }
+	    }
+
+
+		var exitoMensaje = document.getElementById('exitoMensaje');
+
+		// Mostrar el mensaje si existe
+		if (exitoMensaje && exitoMensaje.innerText.trim() !== '') {
+		    exitoMensaje.style.display = 'block';
+		    // Puedes agregar estilos o animaciones adicionales aquí
+		    // Por ejemplo: exitoMensaje.classList.add('animacion-pop');
+		    // Asegúrate de tener estilos CSS correspondientes para la animación
 		}
 	</script>
 </body>

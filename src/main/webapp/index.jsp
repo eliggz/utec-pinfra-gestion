@@ -14,51 +14,35 @@ request.getSession().removeAttribute("errorMensaje");
 <link rel="stylesheet" type="text/css" href="/Proyecto-PInfra/style.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<ul>
-				
-				<li><a href="/Proyecto-PInfra/pages/login/login.jsp">Iniciar sesión</a></li>
-				<li><a href="/Proyecto-PInfra/pages/registro/registro.jsp">Registrarme</a></li>
 
-		<%-- 		<li>
-					<%
-					if (request.getSession().getAttribute("usuarioLogueado") != null) {
-						Usuario usuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
-					%> <span>Bienvenido desde la sesión: <%=usuarioLogueado.getNombreUsuario()%></span>
-					<%
-					}
-					%>
-				</li>
-				<li>
-					<%
-					if (Fabrica.getUsuarioLogueado() != null) {
-					%> <span>Bienvenido desde la fabrica: <%=Fabrica.getUsuarioLogueado().getNombreUsuario()%></span>
-					<%
-					}
-					%>
-				</li> --%>
-			</ul>
-		</nav>
-	</header>
 
-	<main>
-		<%
-		if (Fabrica.getUsuarioLogueado() != null) {
-		%>
-		<h2>
-			Bienvenido
-			<%=Fabrica.getUsuarioLogueado().getNombreUsuario()%>
-			a Mi Gestión UTEC
-		</h2>
-		<%
-		}
-		%>
-		<p>Descubre un mundo de oportunidades y gestiona de manera
-			eficiente.</p>
+  <a href="/Proyecto-PInfra/pages/index.jsp">
+    <img class="imgLogo" src="https://red.utec.edu.uy/wp-content/uploads/2018/11/06-isologotipo-para-fondo-blanco-1.png" alt="Logo UTEC">
+  </a>
 
-  <!-- <div class="pikachu-container">
-        <img src="https://www.pngall.com/wp-content/uploads/5/Pikachu-PNG-Image-File.png" alt="Pikachu" class="pikachu"> -->
-	</main>
+<div id="banner-home">
+  <img class="imgBanner" src="ruta_de_la_imagen" alt="Imagen">
+</div>
+
+<div id="banner-home" class="">
+  <img src="https://utec.edu.uy/assets/static/home/header.png" alt="Imagen" />
+</div>
+
+<main>
+  <h1>Mi Gestión UTEC</h1>
+
+  <p>Portal oficial de la Universidad Tecnológica del Uruguay</p>
+
+  <div class="button-container">
+    <a href="/Proyecto-PInfra/pages/login/login.jsp" class="button">Iniciar sesión</a>
+    <a href="/Proyecto-PInfra/pages/registro/registro.jsp" class="button">Registrarme</a>
+  </div>
+</main>
+
+<footer>
+  <nav>
+    <a href="https://git.utec.edu.uy/five-backup/proyecto-infra" target="_blank">Proyecto en GitHub</a>
+  </nav>
+</footer>
 </body>
 </html>
