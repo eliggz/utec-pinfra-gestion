@@ -19,7 +19,11 @@ request.getSession().removeAttribute("errorMensaje");
 </head>
 <body>
 	<header>
-		<nav>
+		<nav style="display: flex; justify-content: center; align-items: center; height: 60px;">
+    <ul style="list-style: none; display: flex; align-items: center; gap: 20px;">
+        <li>
+            <a><img style="width: 50px; z-index: auto; " class="imgLogo" src="https://red.utec.edu.uy/wp-content/uploads/2018/11/09-Isotipo-1.png" alt="Logo UTEC"></a>
+        </li>
 			<ul>
 			<li><a href="/Proyecto-PInfra/pages/home/home.jsp">Inicio</a></li>
 			<% if(Fabrica.getUsuarioLogueado().getRol().getIdRol()==1l) { %>
