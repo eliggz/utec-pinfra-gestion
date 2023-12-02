@@ -15,8 +15,7 @@ request.getSession().removeAttribute("errorMensaje");
 </head>
 <body>
 
-
-  <a href="/Proyecto-PInfra/pages/index.jsp">
+  <a href="/Proyecto-PInfra/index.jsp">
     <img class="imgLogo" src="https://red.utec.edu.uy/wp-content/uploads/2018/11/06-isologotipo-para-fondo-blanco-1.png" alt="Logo UTEC">
   </a>
 

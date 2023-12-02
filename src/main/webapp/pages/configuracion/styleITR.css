@@ -95,3 +95,37 @@ button:hover {
     cursor: pointer;
     margin-top: 20px;
 }
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo img {
+    width: 50px; /* Tamaño del logo */
+    height: auto;
+    bottom: 46em;
+}
