@@ -7,3 +7,6 @@ La aplicación web, aunque simple, está diseñada para interactuar directamente
 # Notas Importantes:
 * Los datos no se visualizarán al ejecutar la aplicación, ya que requiere una conexión a la base de datos para cargar la información.
 * Se ha adaptado el inicio de sesión para su funcionamiento sin la necesidad de buscar usuarios en la base de datos! 
+
+# Estado del Proyecto:
+Este proyecto se encuentra en desarrollo activo por mí y mis compañeros. Se están realizando mejoras continuas y se están agregando nuevas funcionalidades!
